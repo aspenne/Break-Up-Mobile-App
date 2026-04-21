@@ -1,16 +1,57 @@
 import './global.css';
 
-import { DefaultTheme, DarkTheme } from '@react-navigation/native';
-import { useColorScheme } from 'react-native';
-import { useMemo } from 'react';
+import { DefaultTheme } from '@react-navigation/native';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { StatusBar } from 'expo-status-bar';
 
 import 'react-native-gesture-handler';
 
-import Navigation from './navigation';
+import { AppNavigation, AuthNavigation, OnboardingNavigation } from '@/navigation';
+import { colors } from '@/theme';
+import { useUserStore, useAppStore } from '@/stores';
+
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 2,
+      staleTime: 1000 * 60 * 5,
+      gcTime: 1000 * 60 * 30,
+    },
+    mutations: {
+      retry: 0,
+    },
+  },
+});
+
+const BreakUpTheme = {
+  ...DefaultTheme,
+  dark: false,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: colors.lavender[500],
+    background: colors.background,
+    card: colors.surface,
+    text: colors.textPrimary,
+    border: colors.borderLight,
+    notification: colors.rose[300],
+  },
+};
 
 export default function App() {
-  const colorScheme = useColorScheme();
-  const theme = useMemo(() => (colorScheme === 'dark' ? DarkTheme : DefaultTheme), [colorScheme]);
+  const isAuthenticated = useUserStore((s) => s.isAuthenticated);
+  const hasCompletedOnboarding = useAppStore((s) => s.hasCompletedOnboarding);
 
-  return <Navigation theme={theme} />;
+  const getNavigation = () => {
+    if (!isAuthenticated) return <AuthNavigation theme={BreakUpTheme} />;
+    if (!hasCompletedOnboarding) return <OnboardingNavigation theme={BreakUpTheme} />;
+    return <AppNavigation theme={BreakUpTheme} />;
+  };
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <StatusBar style="dark" />
+      {getNavigation()}
+    </QueryClientProvider>
+  );
 }

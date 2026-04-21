@@ -3,36 +3,59 @@
     "name": "BreakUp",
     "slug": "BreakUp",
     "version": "1.0.0",
-
     "web": {
       "favicon": "./assets/favicon.png"
     },
-
     "experiments": {
       "tsconfigPaths": true
     },
-
-    "plugins": [],
-
+    "plugins": [
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "react-native",
+          "organization": "axel-corp-iz"
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Break-Up a besoin d'accéder à vos photos pour vous aider à faire le tri de vos souvenirs.",
+          "savePhotosPermission": "Break-Up a besoin d'enregistrer des photos dans votre bibliothèque.",
+          "isAccessMediaLocationEnabled": true
+        }
+      ]
+    ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-
     "userInterfaceStyle": "light",
-
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.breakup.app",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Break-Up a besoin d'acceder a vos photos pour vous aider a faire le tri de vos souvenirs."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "backgroundColor": "#FDF6EC"
+      },
+      "package": "com.breakup.app",
+      "permissions": [
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_MEDIA_IMAGES"
+      ]
     }
   }
 }
