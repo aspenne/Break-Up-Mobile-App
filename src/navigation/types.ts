@@ -21,6 +21,7 @@ export type BlogStackParamList = {
   BlogList: undefined;
   BlogArticle: { articleId: number };
   BlogFavorites: undefined;
+  BlogArticleCreate: undefined;
 };
 
 export type JournalStackParamList = {

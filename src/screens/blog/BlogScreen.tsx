@@ -9,10 +9,11 @@ import {
 } from '@/components';
 import { useArticles } from '@/hooks/useBlog';
 import { colors } from '@/theme';
+import { useUserStore } from '@/stores';
 import type { BlogStackParamList } from '@/navigation/types';
 import { useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
-import { FlatList, TouchableOpacity, View } from 'react-native';
+import { FlatList, Pressable, Text, TouchableOpacity, View } from 'react-native';
 
 type Nav = StackNavigationProp<BlogStackParamList, 'BlogList'>;
 
@@ -27,10 +28,37 @@ const CATEGORY_LABELS: Record<string, string> = {
 export default function BlogScreen() {
   const navigation = useNavigation<Nav>();
   const { data, isLoading, isError } = useArticles();
+  const user = useUserStore((s) => s.user);
+  const isAdmin = user?.roles?.includes('admin') ?? false;
 
   const articles = data?.data ?? [];
 
-  const listHeader = <Heading className="mb-4 px-4" style={{ color: colors.lavender[700] }}>Blog 📖</Heading>;
+  const listHeader = (
+    <View className="mb-4 px-4">
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Heading style={{ color: colors.lavender[700] }}>Blog 📖</Heading>
+        {isAdmin && (
+          <Pressable
+            onPress={() => navigation.navigate('BlogArticleCreate')}
+            style={{
+              backgroundColor: colors.lavender[300],
+              paddingHorizontal: 14,
+              paddingVertical: 8,
+              borderRadius: 999,
+              shadowColor: colors.lavender[500],
+              shadowOpacity: 0.15,
+              shadowRadius: 4,
+              shadowOffset: { width: 0, height: 2 },
+              elevation: 2,
+            }}>
+            <Text style={{ color: colors.lavender[900], fontWeight: '700', fontSize: 13 }}>
+              + Article
+            </Text>
+          </Pressable>
+        )}
+      </View>
+    </View>
+  );
 
   if (isLoading) {
     return (

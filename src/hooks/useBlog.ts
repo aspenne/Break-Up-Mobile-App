@@ -1,6 +1,15 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import apiClient from '@/api/client';
 import type { Article, ArticleCategory } from '@/types';
+
+export interface CreateArticlePayload {
+  title: string;
+  excerpt?: string;
+  content: string;
+  category: ArticleCategory;
+  readTimeMinutes: number;
+  imageUrl?: string;
+}
 import type { PaginatedResponse } from '@/api/types';
 
 export function useArticles(params?: {
@@ -46,6 +55,20 @@ export function useToggleFavorite() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['articles'] });
       queryClient.invalidateQueries({ queryKey: ['favorites'] });
+    },
+  });
+}
+
+export function useCreateArticle() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (payload: CreateArticlePayload) => {
+      const { data } = await apiClient.post<Article>('/api/blog/articles', payload);
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['articles'] });
     },
   });
 }
