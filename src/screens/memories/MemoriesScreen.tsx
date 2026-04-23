@@ -36,6 +36,7 @@ export default function MemoriesScreen() {
   const currentSessionDeleted = cleanup.swipeResults.filter((r) => r.decision === 'delete').length;
   const totalSwipedIncludingCurrent = totalSwiped + currentSessionSwiped;
   const totalDeletedIncludingCurrent = totalDeleted + currentSessionDeleted;
+  const totalKeptIncludingCurrent = totalSwipedIncludingCurrent - totalDeletedIncludingCurrent;
   const progressPercent = totalInSources > 0 ? Math.round((totalSwipedIncludingCurrent / totalInSources) * 100) : 0;
 
   // Refetch les données à chaque retour sur cet écran
@@ -80,7 +81,7 @@ export default function MemoriesScreen() {
   const configSummary = memoriesConfig
     ? [
         memoriesConfig.albumIds.length > 0 &&
-          `${memoriesConfig.albumIds.length} album${memoriesConfig.albumIds.length > 1 ? 's' : ''}`,
+          `(${totalInSources}) ${memoriesConfig.albumIds.length} album${memoriesConfig.albumIds.length > 1 ? 's' : ''}`,
         memoriesConfig.individualAssetIds.length > 0 &&
           `${memoriesConfig.individualAssetIds.length} photo${memoriesConfig.individualAssetIds.length > 1 ? 's' : ''}`,
       ]
@@ -95,25 +96,25 @@ export default function MemoriesScreen() {
       {/* Progress card */}
       <Card className="mb-4 border border-lavender-200 bg-lavender-50">
         <View className="mb-3 flex-row justify-between">
-          <View className="items-center">
-            <Text style={{ fontSize: 28, fontWeight: '700', color: '#9333ea' }}>
-              {totalInSources}
-            </Text>
-            <Caption className="text-lavender-400">sources</Caption>
-          </View>
-          <View className="w-px bg-lavender-100" />
-          <View className="items-center">
-            <Text style={{ fontSize: 28, fontWeight: '700', color: '#9333ea' }}>
+          <View className="items-center flex-1">
+            <Text style={{ fontSize: 24, fontWeight: '700', color: '#EF4444' }}>
               {totalDeletedIncludingCurrent}
             </Text>
-            <Caption className="text-lavender-400">supprimées</Caption>
+            <Caption className="text-lavender-400 text-center">supprimées</Caption>
           </View>
           <View className="w-px bg-lavender-100" />
-          <View className="items-center">
-            <Text style={{ fontSize: 28, fontWeight: '700', color: '#9333ea' }}>
+          <View className="items-center flex-1">
+            <Text style={{ fontSize: 24, fontWeight: '700', color: '#5A8F72' }}>
+              {totalKeptIncludingCurrent}
+            </Text>
+            <Caption className="text-lavender-400 text-center">conservées</Caption>
+          </View>
+          <View className="w-px bg-lavender-100" />
+          <View className="items-center flex-1">
+            <Text style={{ fontSize: 24, fontWeight: '700', color: '#9333ea' }}>
               {progressPercent}%
             </Text>
-            <Caption className="text-lavender-400">triées</Caption>
+            <Caption className="text-lavender-400 text-center">triées</Caption>
           </View>
         </View>
 
