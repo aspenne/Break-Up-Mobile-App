@@ -13,7 +13,7 @@ import { colors } from '@/theme';
 import type { MemoriesStackParamList } from '@/navigation/types';
 import { loadPhotosFromConfig } from '@/services/faceDetectionService';
 import { useMemoryStore } from '@/stores/useMemoryStore';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import { useCallback, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, Pressable, Text, View } from 'react-native';
@@ -22,15 +22,28 @@ type Nav = StackNavigationProp<MemoriesStackParamList>;
 
 export default function MemoriesScreen() {
   const navigation = useNavigation<Nav>();
-  const { data, isLoading, isError } = useMemories();
+  const { data, isLoading, isError, refetch } = useMemories();
   const store = useMemoryStore();
   const cancelRef = useRef<(() => void) | null>(null);
 
   const [isLoadingPhotos, setIsLoadingPhotos] = useState(false);
   const [loadProgress, setLoadProgress] = useState({ loaded: 0, total: 0 });
 
-  const { totalInSources, totalSwiped, totalDeleted, memoriesConfig } = store;
-  const progressPercent = totalInSources > 0 ? Math.round((totalSwiped / totalInSources) * 100) : 0;
+  const { totalInSources, totalSwiped, totalDeleted, memoriesConfig, cleanup } = store;
+
+  // Calculer les stats EN TEMPS RÉEL en combinant sessions complétées + session actuelle
+  const currentSessionSwiped = cleanup.swipeResults.length;
+  const currentSessionDeleted = cleanup.swipeResults.filter((r) => r.decision === 'delete').length;
+  const totalSwipedIncludingCurrent = totalSwiped + currentSessionSwiped;
+  const totalDeletedIncludingCurrent = totalDeleted + currentSessionDeleted;
+  const progressPercent = totalInSources > 0 ? Math.round((totalSwipedIncludingCurrent / totalInSources) * 100) : 0;
+
+  // Refetch les données à chaque retour sur cet écran
+  useFocusEffect(
+    useCallback(() => {
+      refetch();
+    }, [refetch])
+  );
 
   const handleStartCleanup = useCallback(() => {
     store.resetCleanupSession();
@@ -77,37 +90,37 @@ export default function MemoriesScreen() {
 
   const listHeader = (
     <View className="px-6">
-      <Heading className="mb-6" style={{ color: colors.rose[400] }}>Souvenirs 🗑️</Heading>
+      <Heading className="mb-6" style={{ color: colors.lavender[700] }}>Souvenirs 🗑️</Heading>
 
       {/* Progress card */}
-      <Card className="mb-4 border border-rose-100 bg-rose-50">
+      <Card className="mb-4 border border-lavender-200 bg-lavender-50">
         <View className="mb-3 flex-row justify-between">
           <View className="items-center">
-            <Text style={{ fontSize: 28, fontWeight: '700', color: '#ff7070' }}>
+            <Text style={{ fontSize: 28, fontWeight: '700', color: '#9333ea' }}>
               {totalInSources}
             </Text>
-            <Caption className="text-rose-400">sources</Caption>
+            <Caption className="text-lavender-400">sources</Caption>
           </View>
-          <View className="w-px bg-rose-100" />
+          <View className="w-px bg-lavender-100" />
           <View className="items-center">
-            <Text style={{ fontSize: 28, fontWeight: '700', color: '#ff7070' }}>
-              {totalDeleted}
+            <Text style={{ fontSize: 28, fontWeight: '700', color: '#9333ea' }}>
+              {totalDeletedIncludingCurrent}
             </Text>
-            <Caption className="text-rose-400">supprimées</Caption>
+            <Caption className="text-lavender-400">supprimées</Caption>
           </View>
-          <View className="w-px bg-rose-100" />
+          <View className="w-px bg-lavender-100" />
           <View className="items-center">
-            <Text style={{ fontSize: 28, fontWeight: '700', color: '#ff7070' }}>
+            <Text style={{ fontSize: 28, fontWeight: '700', color: '#9333ea' }}>
               {progressPercent}%
             </Text>
-            <Caption className="text-rose-400">triées</Caption>
+            <Caption className="text-lavender-400">triées</Caption>
           </View>
         </View>
 
         {totalInSources > 0 && (
-          <View className="mt-1 h-2 overflow-hidden rounded-full bg-rose-100">
+          <View className="mt-1 h-2 overflow-hidden rounded-full bg-lavender-100">
             <View
-              className="h-full rounded-full bg-rose-300"
+              className="h-full rounded-full bg-lavender-300"
               style={{ width: `${progressPercent}%` }}
             />
           </View>
@@ -129,12 +142,12 @@ export default function MemoriesScreen() {
           }}>
           <View style={{ flex: 1 }}>
             <Text style={{ fontSize: 13, color: '#6B7280' }}>Sources configurées</Text>
-            <Text style={{ fontSize: 14, fontWeight: '600', color: '#ff7070', marginTop: 2 }}>
+            <Text style={{ fontSize: 14, fontWeight: '600', color: '#9333ea', marginTop: 2 }}>
               {configSummary}
             </Text>
           </View>
           <Pressable onPress={handleEditSources}>
-            <Text style={{ fontSize: 13, fontWeight: '600', color: '#ffa0a0' }}>Modifier</Text>
+            <Text style={{ fontSize: 13, fontWeight: '600', color: '#9333ea' }}>Modifier</Text>
           </Pressable>
         </View>
       )}
@@ -142,7 +155,6 @@ export default function MemoriesScreen() {
       {/* CTA */}
       <Button
         title="Nettoyer mes souvenirs"
-        variant="rose"
         onPress={handleStartCleanup}
         className="mb-3"
         disabled={isLoadingPhotos}

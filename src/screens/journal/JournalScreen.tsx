@@ -31,18 +31,18 @@ export default function JournalScreen() {
 
   const header = (
     <View className="mb-4 px-4">
-      <Heading className="mb-4" style={{ color: colors.sage[700] }}>Journal ✍️</Heading>
+      <Heading className="mb-4" style={{ color: colors.lavender[700] }}>Journal ✍️</Heading>
       <TouchableOpacity
         activeOpacity={0.8}
         disabled={hasEntryToday}
         onPress={() => navigation.navigate('JournalComposeEmotion')}
         className={`items-center rounded-button px-6 py-4 shadow-soft ${
-          hasEntryToday ? 'bg-sage-100' : 'bg-sage-300'
+          hasEntryToday ? 'bg-lavender-100' : 'bg-lavender-300'
         }`}
       >
         <Text
           className={`text-body-md font-semibold ${
-            hasEntryToday ? 'text-sage-400' : 'text-sage-900'
+            hasEntryToday ? 'text-lavender-400' : 'text-lavender-900'
           }`}
         >
           {hasEntryToday ? 'Revenez demain 🌱' : '+ Nouvelle entrée'}
@@ -86,7 +86,7 @@ export default function JournalScreen() {
                 navigation.navigate('JournalEntryDetail', { entryId: item.id })
               }
             >
-              <Card className="mx-4 mb-3 border border-sage-200">
+              <Card className="mx-4 mb-3 border border-lavender-200">
                 <View className="flex-row items-center">
                   <Text className="mr-3 text-2xl">{conf.emoji}</Text>
                   <View className="flex-1">
@@ -104,7 +104,7 @@ export default function JournalScreen() {
         ListEmptyComponent={
           isError ? (
             <View className="px-4">
-              <Caption className="text-center text-sage-400">
+              <Caption className="text-center text-lavender-400">
                 Impossible de charger les entrées.
               </Caption>
             </View>

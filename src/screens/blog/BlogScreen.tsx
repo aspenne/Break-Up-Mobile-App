@@ -30,7 +30,7 @@ export default function BlogScreen() {
 
   const articles = data?.data ?? [];
 
-  const listHeader = <Heading className="mb-4 px-4" style={{ color: colors.sky[500] }}>Blog 📖</Heading>;
+  const listHeader = <Heading className="mb-4 px-4" style={{ color: colors.lavender[700] }}>Blog 📖</Heading>;
 
   if (isLoading) {
     return (
@@ -58,8 +58,8 @@ export default function BlogScreen() {
             activeOpacity={0.7}
             onPress={() => navigation.navigate('BlogArticle', { articleId: item.id })}
           >
-            <Card className="mx-4 mb-3 border border-sky-100">
-              <Caption className="mb-1 uppercase" style={{ color: colors.sky[400] }}>
+            <Card className="mx-4 mb-3 border border-lavender-100">
+              <Caption className="mb-1 uppercase" style={{ color: colors.lavender[400] }}>
                 {CATEGORY_LABELS[item.category] ?? item.category} · {item.readTimeMinutes} min
               </Caption>
               <Body className="font-semibold">{item.title}</Body>
@@ -72,7 +72,7 @@ export default function BlogScreen() {
         ListEmptyComponent={
           isError ? (
             <View className="px-4">
-              <Caption className="text-sky-400 text-center" style={{ color: colors.sky[400] }}>
+              <Caption className="text-lavender-400 text-center" style={{ color: colors.lavender[400] }}>
                 Impossible de charger les articles.
               </Caption>
             </View>
