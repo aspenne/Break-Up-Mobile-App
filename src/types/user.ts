@@ -7,4 +7,5 @@ export interface User {
   breakupDate: string | null;
   createdAt: string;
   updatedAt: string | null;
+  roles?: string[];
 }

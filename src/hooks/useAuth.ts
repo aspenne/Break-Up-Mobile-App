@@ -7,11 +7,14 @@ import type { AuthResponse } from '@/api/types';
 
 export function useMe() {
   const isAuthenticated = useUserStore((s) => s.isAuthenticated);
+  const setUser = useUserStore((s) => s.setUser);
 
   return useQuery({
     queryKey: ['auth', 'me'],
     queryFn: async () => {
       const { data } = await apiClient.get<{ user: User }>('/api/auth/me');
+      // Sync store so roles & other fields stay fresh
+      setUser(data.user);
       return data.user;
     },
     enabled: isAuthenticated,
