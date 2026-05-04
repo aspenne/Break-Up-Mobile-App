@@ -90,12 +90,12 @@ export default function BlogArticleCreateScreen() {
           contentContainerStyle={{ paddingBottom: 40 }}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled">
-          <Heading className="mb-6" style={{ color: colors.lavender[700] }}>
+          <Heading className="mb-6" style={{ color: colors.sky[700] }}>
             Nouvel article ✍️
           </Heading>
 
           {/* Title */}
-          <Caption className="mb-2 uppercase tracking-wider" style={{ color: colors.lavender[500] }}>
+          <Caption className="mb-2 uppercase tracking-wider" style={{ color: colors.sky[500] }}>
             Titre
           </Caption>
           <TextInput
@@ -107,7 +107,7 @@ export default function BlogArticleCreateScreen() {
               backgroundColor: '#fff',
               borderRadius: 12,
               borderWidth: 1,
-              borderColor: colors.lavender[100],
+              borderColor: colors.sky[100],
               paddingHorizontal: 14,
               paddingVertical: 12,
               fontSize: 16,
@@ -117,7 +117,7 @@ export default function BlogArticleCreateScreen() {
           />
 
           {/* Category */}
-          <Caption className="mb-2 uppercase tracking-wider" style={{ color: colors.lavender[500] }}>
+          <Caption className="mb-2 uppercase tracking-wider" style={{ color: colors.sky[500] }}>
             Catégorie
           </Caption>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 20 }}>
@@ -131,13 +131,13 @@ export default function BlogArticleCreateScreen() {
                     paddingHorizontal: 14,
                     paddingVertical: 8,
                     borderRadius: 999,
-                    backgroundColor: active ? colors.lavender[300] : '#fff',
+                    backgroundColor: active ? colors.sky[300] : '#fff',
                     borderWidth: 1,
-                    borderColor: active ? colors.lavender[400] : colors.lavender[100],
+                    borderColor: active ? colors.sky[400] : colors.sky[100],
                   }}>
                   <Text
                     style={{
-                      color: active ? colors.lavender[900] : colors.lavender[600],
+                      color: active ? colors.sky[900] : colors.sky[600],
                       fontSize: 13,
                       fontWeight: '600',
                     }}>
@@ -149,7 +149,7 @@ export default function BlogArticleCreateScreen() {
           </View>
 
           {/* Read time */}
-          <Caption className="mb-2 uppercase tracking-wider" style={{ color: colors.lavender[500] }}>
+          <Caption className="mb-2 uppercase tracking-wider" style={{ color: colors.sky[500] }}>
             Durée de lecture (minutes)
           </Caption>
           <TextInput
@@ -163,7 +163,7 @@ export default function BlogArticleCreateScreen() {
               backgroundColor: '#fff',
               borderRadius: 12,
               borderWidth: 1,
-              borderColor: colors.lavender[100],
+              borderColor: colors.sky[100],
               paddingHorizontal: 14,
               paddingVertical: 12,
               fontSize: 16,
@@ -174,7 +174,7 @@ export default function BlogArticleCreateScreen() {
           />
 
           {/* Excerpt */}
-          <Caption className="mb-2 uppercase tracking-wider" style={{ color: colors.lavender[500] }}>
+          <Caption className="mb-2 uppercase tracking-wider" style={{ color: colors.sky[500] }}>
             Résumé (optionnel)
           </Caption>
           <TextInput
@@ -187,7 +187,7 @@ export default function BlogArticleCreateScreen() {
               backgroundColor: '#fff',
               borderRadius: 12,
               borderWidth: 1,
-              borderColor: colors.lavender[100],
+              borderColor: colors.sky[100],
               paddingHorizontal: 14,
               paddingVertical: 12,
               fontSize: 15,
@@ -199,7 +199,7 @@ export default function BlogArticleCreateScreen() {
           />
 
           {/* Content */}
-          <Caption className="mb-2 uppercase tracking-wider" style={{ color: colors.lavender[500] }}>
+          <Caption className="mb-2 uppercase tracking-wider" style={{ color: colors.sky[500] }}>
             Contenu
           </Caption>
           <TextInput
@@ -212,7 +212,7 @@ export default function BlogArticleCreateScreen() {
               backgroundColor: '#fff',
               borderRadius: 12,
               borderWidth: 1,
-              borderColor: colors.lavender[100],
+              borderColor: colors.sky[100],
               paddingHorizontal: 14,
               paddingVertical: 12,
               fontSize: 15,

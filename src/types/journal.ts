@@ -54,9 +54,9 @@ export const JOURNAL_EMOTION_CONFIG: Record<
   confused: {
     label: 'Confus(e)',
     emoji: '😕',
-    bgClass: 'bg-lavender-100',
-    borderClass: 'border-lavender-200',
-    textClass: 'text-lavender-700',
+    bgClass: 'bg-sky-100',
+    borderClass: 'border-sky-200',
+    textClass: 'text-sky-700',
   },
   neutral: {
     label: 'Neutre',

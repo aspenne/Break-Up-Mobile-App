@@ -31,13 +31,13 @@ function RoomCard({ room }: { room: ChatRoom }) {
 
   return (
     <TouchableOpacity onPress={handlePress} activeOpacity={0.7} disabled={isFull && !room.isMember}>
-      <Card className="mx-4 mb-3 border border-lavender-200">
+      <Card className="mx-4 mb-3 border border-sky-200">
         <View className="flex-row items-start justify-between">
           <View className="flex-1">
             <Body className="font-semibold">{room.name}</Body>
             <View className="mt-1 flex-row items-center">
-              <View className="rounded-full bg-lavender-50 px-2.5 py-0.5">
-                <Caption className="text-lavender-600">{room.theme}</Caption>
+              <View className="rounded-full bg-sky-50 px-2.5 py-0.5">
+                <Caption className="text-sky-600">{room.theme}</Caption>
               </View>
             </View>
           </View>
@@ -68,12 +68,12 @@ function RoomCard({ room }: { room: ChatRoom }) {
               <TouchableOpacity
                 onPress={handlePress}
                 disabled={joinRoom.isPending}
-                className="items-center rounded-button border border-lavender-200 bg-surface py-2.5"
+                className="items-center rounded-button border border-sky-200 bg-surface py-2.5"
                 activeOpacity={0.7}>
                 {joinRoom.isPending ? (
-                  <ActivityIndicator size="small" color={colors.lavender[500]} />
+                  <ActivityIndicator size="small" color={colors.sky[500]} />
                 ) : (
-                  <Text className="text-body-sm font-semibold" style={{ color: colors.lavender[700] }}>
+                  <Text className="text-body-sm font-semibold" style={{ color: colors.sky[700] }}>
                     Rejoindre
                   </Text>
                 )}
@@ -95,16 +95,16 @@ export default function ChatScreen() {
 
   const listHeader = (
     <View className="mb-4 px-4">
-      <Heading className="mb-4" style={{ color: colors.lavender[700] }}>Chat 💬</Heading>
+      <Heading className="mb-4" style={{ color: colors.sky[700] }}>Chat 💬</Heading>
       <View className="flex-row items-center justify-between rounded-card bg-surface-secondary px-4 py-3">
         <View className="flex-row items-center">
-          <Feather name={isAnonymous ? 'eye-off' : 'eye'} size={16} color={colors.lavender[500]} />
+          <Feather name={isAnonymous ? 'eye-off' : 'eye'} size={16} color={colors.sky[500]} />
           <Body className="ml-2 text-body-sm">Mode anonyme</Body>
         </View>
         <Switch
           value={isAnonymous}
           onValueChange={toggleAnonymous}
-          trackColor={{ false: colors.lavender[100], true: colors.lavender[300] }}
+          trackColor={{ false: colors.sky[100], true: colors.sky[300] }}
           thumbColor={colors.surface}
         />
       </View>
@@ -136,7 +136,7 @@ export default function ChatScreen() {
         ListEmptyComponent={
           isError ? (
             <View className="px-4">
-              <Caption className="text-center" style={{ color: colors.lavender[400] }}>
+              <Caption className="text-center" style={{ color: colors.sky[400] }}>
                 Impossible de charger les salons.
               </Caption>
             </View>

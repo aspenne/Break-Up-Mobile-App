@@ -122,7 +122,7 @@ export default function VerifyResetCodeScreen() {
             <Heading className="text-center text-heading-xl">Vérification</Heading>
             <Body className="mt-2 text-center">
               Entrez le code à 6 chiffres envoyé à{'\n'}
-              <Text className="font-semibold text-lavender-600">{email}</Text>
+              <Text className="font-semibold text-sky-600">{email}</Text>
             </Body>
           </View>
 
@@ -137,7 +137,7 @@ export default function VerifyResetCodeScreen() {
               <TextInput
                 key={index}
                 ref={(ref) => { inputRefs.current[index] = ref; }}
-                className="h-14 w-12 rounded-input border border-lavender-200 bg-surface text-center text-xl font-bold text-text-primary"
+                className="h-14 w-12 rounded-input border border-sky-200 bg-surface text-center text-xl font-bold text-text-primary"
                 value={digit}
                 onChangeText={(value) => handleDigitChange(index, value)}
                 onKeyPress={({ nativeEvent }) => handleKeyPress(index, nativeEvent.key)}
@@ -149,7 +149,7 @@ export default function VerifyResetCodeScreen() {
           </View>
 
           <TouchableOpacity
-            className="items-center rounded-button bg-lavender-300 px-6 py-4 shadow-soft"
+            className="items-center rounded-button bg-sky-300 px-6 py-4 shadow-soft"
             activeOpacity={0.7}
             onPress={handleVerify}
             disabled={verifyCode.isPending}
@@ -157,7 +157,7 @@ export default function VerifyResetCodeScreen() {
             {verifyCode.isPending ? (
               <ActivityIndicator color="#542b94" />
             ) : (
-              <Text className="text-body-md font-semibold text-lavender-900">Vérifier</Text>
+              <Text className="text-body-md font-semibold text-sky-900">Vérifier</Text>
             )}
           </TouchableOpacity>
 
@@ -179,7 +179,7 @@ export default function VerifyResetCodeScreen() {
           >
             <Text className="text-body-sm text-text-secondary">
               Retour à la{' '}
-              <Text className="font-semibold text-lavender-600">connexion</Text>
+              <Text className="font-semibold text-sky-600">connexion</Text>
             </Text>
           </TouchableOpacity>
         </ScrollView>

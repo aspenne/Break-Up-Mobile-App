@@ -108,7 +108,7 @@ export default function ResetPasswordScreen() {
               Nouveau mot de passe
             </Text>
             <TextInput
-              className="rounded-input border border-lavender-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
+              className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
               placeholder="Minimum 8 caractères"
               placeholderTextColor="#9b93a8"
               value={password}
@@ -122,7 +122,7 @@ export default function ResetPasswordScreen() {
               Confirmer le mot de passe
             </Text>
             <TextInput
-              className="rounded-input border border-lavender-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
+              className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
               placeholder="Retapez votre mot de passe"
               placeholderTextColor="#9b93a8"
               value={confirmPassword}
@@ -132,7 +132,7 @@ export default function ResetPasswordScreen() {
           </View>
 
           <TouchableOpacity
-            className="items-center rounded-button bg-lavender-300 px-6 py-4 shadow-soft"
+            className="items-center rounded-button bg-sky-300 px-6 py-4 shadow-soft"
             activeOpacity={0.7}
             onPress={handleReset}
             disabled={resetPassword.isPending}
@@ -140,7 +140,7 @@ export default function ResetPasswordScreen() {
             {resetPassword.isPending ? (
               <ActivityIndicator color="#542b94" />
             ) : (
-              <Text className="text-body-md font-semibold text-lavender-900">
+              <Text className="text-body-md font-semibold text-sky-900">
                 Réinitialiser
               </Text>
             )}
@@ -152,7 +152,7 @@ export default function ResetPasswordScreen() {
           >
             <Text className="text-body-md text-text-secondary">
               Retour à la{' '}
-              <Text className="font-semibold text-lavender-600">connexion</Text>
+              <Text className="font-semibold text-sky-600">connexion</Text>
             </Text>
           </TouchableOpacity>
         </ScrollView>

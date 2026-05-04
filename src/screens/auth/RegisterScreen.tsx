@@ -89,7 +89,7 @@ export default function RegisterScreen() {
             <View className="flex-1">
               <Text className="mb-1 text-body-sm font-medium text-text-secondary">Prénom</Text>
               <TextInput
-                className="rounded-input border border-lavender-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
+                className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
                 placeholder="Prénom"
                 placeholderTextColor="#9b93a8"
                 value={firstName}
@@ -100,7 +100,7 @@ export default function RegisterScreen() {
             <View className="flex-1">
               <Text className="mb-1 text-body-sm font-medium text-text-secondary">Nom</Text>
               <TextInput
-                className="rounded-input border border-lavender-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
+                className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
                 placeholder="Nom"
                 placeholderTextColor="#9b93a8"
                 value={lastName}
@@ -113,7 +113,7 @@ export default function RegisterScreen() {
           <View className="mb-4">
             <Text className="mb-1 text-body-sm font-medium text-text-secondary">Email</Text>
             <TextInput
-              className="rounded-input border border-lavender-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
+              className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
               placeholder="votre@email.com"
               placeholderTextColor="#9b93a8"
               value={email}
@@ -129,7 +129,7 @@ export default function RegisterScreen() {
               Mot de passe
             </Text>
             <TextInput
-              className="rounded-input border border-lavender-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
+              className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
               placeholder="Minimum 8 caractères"
               placeholderTextColor="#9b93a8"
               value={password}
@@ -143,7 +143,7 @@ export default function RegisterScreen() {
               Confirmer le mot de passe
             </Text>
             <TextInput
-              className="rounded-input border border-lavender-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
+              className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
               placeholder="Retapez votre mot de passe"
               placeholderTextColor="#9b93a8"
               value={confirmPassword}
@@ -153,7 +153,7 @@ export default function RegisterScreen() {
           </View>
 
           <TouchableOpacity
-            className="items-center rounded-button bg-lavender-300 px-6 py-4 shadow-soft"
+            className="items-center rounded-button bg-sky-300 px-6 py-4 shadow-soft"
             activeOpacity={0.7}
             onPress={handleRegister}
             disabled={register.isPending}
@@ -161,7 +161,7 @@ export default function RegisterScreen() {
             {register.isPending ? (
               <ActivityIndicator color="#542b94" />
             ) : (
-              <Text className="text-body-md font-semibold text-lavender-900">Créer mon compte</Text>
+              <Text className="text-body-md font-semibold text-sky-900">Créer mon compte</Text>
             )}
           </TouchableOpacity>
 
@@ -171,7 +171,7 @@ export default function RegisterScreen() {
           >
             <Text className="text-body-md text-text-secondary">
               Déjà un compte ?{' '}
-              <Text className="font-semibold text-lavender-600">Se connecter</Text>
+              <Text className="font-semibold text-sky-600">Se connecter</Text>
             </Text>
           </TouchableOpacity>
         </ScrollView>

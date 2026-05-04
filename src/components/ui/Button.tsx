@@ -11,16 +11,16 @@ type ButtonProps = {
 
 const variantStyles: Record<ButtonVariant, { button: string; text: string }> = {
   primary: {
-    button: 'bg-lavender-300 rounded-button shadow-soft px-6 py-4 items-center',
-    text: 'text-lavender-900 text-body-md font-semibold',
+    button: 'bg-sky-300 rounded-button shadow-soft px-6 py-4 items-center',
+    text: 'text-sky-900 text-body-md font-semibold',
   },
   secondary: {
-    button: 'bg-surface border border-lavender-200 rounded-button px-6 py-4 items-center',
-    text: 'text-lavender-700 text-body-md font-semibold',
+    button: 'bg-surface border border-sky-200 rounded-button px-6 py-4 items-center',
+    text: 'text-sky-700 text-body-md font-semibold',
   },
   ghost: {
     button: 'px-6 py-4 items-center',
-    text: 'text-lavender-500 text-body-md font-medium',
+    text: 'text-sky-500 text-body-md font-medium',
   },
   rose: {
     button: 'bg-rose-100 rounded-button shadow-soft px-6 py-4 items-center border border-rose-200',

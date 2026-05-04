@@ -21,7 +21,7 @@ export function ComposeHeader({ step, total, onClose }: ComposeHeaderProps) {
           <View
             key={i}
             className={`h-1.5 flex-1 rounded-full ${
-              i <= step ? 'bg-lavender-400' : 'bg-lavender-100'
+              i <= step ? 'bg-sky-400' : 'bg-sky-100'
             }`}
           />
         ))}

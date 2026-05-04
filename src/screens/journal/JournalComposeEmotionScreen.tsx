@@ -41,14 +41,14 @@ export default function JournalComposeEmotionScreen() {
                 activeOpacity={0.7}
                 className={`w-[48%] items-center rounded-card border px-4 py-6 ${
                   selected
-                    ? 'border-lavender-400 bg-lavender-100'
+                    ? 'border-sky-400 bg-sky-100'
                     : `${conf.borderClass} ${conf.bgClass}`
                 }`}
               >
                 <Text className="mb-2 text-4xl">{conf.emoji}</Text>
                 <Text
                   className={`text-body-md font-semibold ${
-                    selected ? 'text-lavender-800' : conf.textClass
+                    selected ? 'text-sky-800' : conf.textClass
                   }`}
                 >
                   {conf.label}

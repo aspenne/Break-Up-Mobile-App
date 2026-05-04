@@ -71,7 +71,7 @@ export default function LoginScreen() {
           <View className="mb-4">
             <Text className="mb-1 text-body-sm font-medium text-text-secondary">Email</Text>
             <TextInput
-              className="rounded-input border border-lavender-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
+              className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
               placeholder="votre@email.com"
               placeholderTextColor="#9b93a8"
               value={email}
@@ -87,7 +87,7 @@ export default function LoginScreen() {
               Mot de passe
             </Text>
             <TextInput
-              className="rounded-input border border-lavender-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
+              className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
               placeholder="••••••••"
               placeholderTextColor="#9b93a8"
               value={password}
@@ -100,13 +100,13 @@ export default function LoginScreen() {
             className="mb-6 self-end py-1"
             onPress={() => navigation.navigate('ForgotPassword')}
           >
-            <Text className="text-body-sm font-medium text-lavender-600">
+            <Text className="text-body-sm font-medium text-sky-600">
               Mot de passe oublié ?
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            className="items-center rounded-button bg-lavender-300 px-6 py-4 shadow-soft"
+            className="items-center rounded-button bg-sky-300 px-6 py-4 shadow-soft"
             activeOpacity={0.7}
             onPress={handleLogin}
             disabled={login.isPending}
@@ -114,7 +114,7 @@ export default function LoginScreen() {
             {login.isPending ? (
               <ActivityIndicator color="#542b94" />
             ) : (
-              <Text className="text-body-md font-semibold text-lavender-900">Se connecter</Text>
+              <Text className="text-body-md font-semibold text-sky-900">Se connecter</Text>
             )}
           </TouchableOpacity>
 
@@ -124,7 +124,7 @@ export default function LoginScreen() {
           >
             <Text className="text-body-md text-text-secondary">
               Pas encore de compte ?{' '}
-              <Text className="font-semibold text-lavender-600">S'inscrire</Text>
+              <Text className="font-semibold text-sky-600">S'inscrire</Text>
             </Text>
           </TouchableOpacity>
         </ScrollView>

@@ -79,9 +79,9 @@ export default function JournalEntryDetailScreen() {
               navigation.navigate('JournalEntryEdit', { entryId: entry.id })
             }
             activeOpacity={0.7}
-            className="rounded-button border border-lavender-200 bg-surface px-4 py-2"
+            className="rounded-button border border-sky-200 bg-surface px-4 py-2"
           >
-            <Text className="text-body-sm font-semibold text-lavender-700">Modifier</Text>
+            <Text className="text-body-sm font-semibold text-sky-700">Modifier</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={handleDelete}

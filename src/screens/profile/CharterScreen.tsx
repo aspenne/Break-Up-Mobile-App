@@ -64,8 +64,8 @@ export default function CharterScreen() {
         contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 40 }}
         showsVerticalScrollIndicator={false}
       >
-        <View className="mb-6 mt-2 rounded-2xl bg-lavender-50 px-5 py-4">
-          <Body className="text-center leading-6 text-lavender-700">
+        <View className="mb-6 mt-2 rounded-2xl bg-sky-50 px-5 py-4">
+          <Body className="text-center leading-6 text-sky-700">
             BreakUp est un espace de soutien et de réconfort. Pour que chacun s'y
             sente en sécurité, nous vous demandons de respecter ces quelques
             règles simples.
@@ -75,7 +75,7 @@ export default function CharterScreen() {
         {RULES.map((rule, index) => (
           <View
             key={index}
-            className="mb-4 rounded-card border border-lavender-100 bg-surface px-5 py-4"
+            className="mb-4 rounded-card border border-sky-100 bg-surface px-5 py-4"
           >
             <View className="mb-2 flex-row items-center">
               <Body className="mr-2 text-xl">{rule.emoji}</Body>

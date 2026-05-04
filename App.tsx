@@ -29,7 +29,7 @@ const BreakUpTheme = {
   dark: false,
   colors: {
     ...DefaultTheme.colors,
-    primary: colors.lavender[500],
+    primary: colors.sky[500],
     background: colors.background,
     card: colors.surface,
     text: colors.textPrimary,

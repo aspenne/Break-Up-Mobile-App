@@ -15,7 +15,7 @@ import OnboardingStack from './OnboardingStack';
 const TabNavigator = createBottomTabNavigator({
   screenOptions: {
     headerShown: false,
-    tabBarActiveTintColor: colors.lavender[500],
+    tabBarActiveTintColor: colors.sky[500],
     tabBarInactiveTintColor: colors.textMuted,
     tabBarStyle: {
       backgroundColor: colors.surface,
@@ -26,7 +26,7 @@ const TabNavigator = createBottomTabNavigator({
       height: 88,
     },
     tabBarLabelStyle: {
-      fontSize: 11,
+      fontSize: 10,
       fontWeight: '500' as const,
       marginTop: 4,
     },

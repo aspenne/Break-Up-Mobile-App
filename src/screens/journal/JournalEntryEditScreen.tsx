@@ -105,14 +105,14 @@ export default function JournalEntryEditScreen() {
                   activeOpacity={0.7}
                   className={`flex-row items-center rounded-button border px-3 py-2 ${
                     selected
-                      ? 'border-lavender-400 bg-lavender-100'
+                      ? 'border-sky-400 bg-sky-100'
                       : `${conf.borderClass} ${conf.bgClass}`
                   }`}
                 >
                   <Text className="mr-1.5 text-base">{conf.emoji}</Text>
                   <Text
                     className={`text-body-sm font-semibold ${
-                      selected ? 'text-lavender-800' : conf.textClass
+                      selected ? 'text-sky-800' : conf.textClass
                     }`}
                   >
                     {conf.label}
@@ -126,7 +126,7 @@ export default function JournalEntryEditScreen() {
           <TextInput
             value={title}
             onChangeText={setTitle}
-            className="mb-4 rounded-card border border-lavender-200 bg-surface px-4 py-3 text-body-md text-text-primary"
+            className="mb-4 rounded-card border border-sky-200 bg-surface px-4 py-3 text-body-md text-text-primary"
           />
 
           <Caption className="mb-2 uppercase tracking-wider text-text-muted">Contenu</Caption>
@@ -135,7 +135,7 @@ export default function JournalEntryEditScreen() {
             onChangeText={setContent}
             multiline
             textAlignVertical="top"
-            className="min-h-[220px] rounded-card border border-lavender-200 bg-surface p-4 text-body-md text-text-primary"
+            className="min-h-[220px] rounded-card border border-sky-200 bg-surface p-4 text-body-md text-text-primary"
           />
 
           {error && <Caption className="mt-3 text-rose-400">{error}</Caption>}
@@ -145,21 +145,21 @@ export default function JournalEntryEditScreen() {
           <TouchableOpacity
             onPress={() => navigation.goBack()}
             activeOpacity={0.7}
-            className="items-center rounded-button border border-lavender-200 bg-surface px-6 py-4"
+            className="items-center rounded-button border border-sky-200 bg-surface px-6 py-4"
           >
-            <Text className="text-body-md font-semibold text-lavender-700">Annuler</Text>
+            <Text className="text-body-md font-semibold text-sky-700">Annuler</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={handleSave}
             activeOpacity={0.7}
             disabled={!canSave}
             className={`flex-1 items-center rounded-button px-6 py-4 shadow-soft ${
-              canSave ? 'bg-lavender-300' : 'bg-lavender-100'
+              canSave ? 'bg-sky-300' : 'bg-sky-100'
             }`}
           >
             <Text
               className={`text-body-md font-semibold ${
-                canSave ? 'text-lavender-900' : 'text-lavender-400'
+                canSave ? 'text-sky-900' : 'text-sky-400'
               }`}
             >
               {updateEntry.isPending ? 'Sauvegarde…' : 'Enregistrer'}

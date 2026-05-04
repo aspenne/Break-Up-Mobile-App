@@ -108,7 +108,7 @@ export default function JournalComposeContentScreen() {
             placeholder="Écris ce qui te traverse, sans filtre…"
             placeholderTextColor="#9b93a8"
             textAlignVertical="top"
-            className="min-h-[220px] rounded-card border border-lavender-200 bg-surface p-4 text-body-md text-text-primary"
+            className="min-h-[220px] rounded-card border border-sky-200 bg-surface p-4 text-body-md text-text-primary"
           />
 
           {error && (
@@ -120,21 +120,21 @@ export default function JournalComposeContentScreen() {
           <TouchableOpacity
             onPress={() => navigation.goBack()}
             activeOpacity={0.7}
-            className="items-center rounded-button border border-lavender-200 bg-surface px-6 py-4"
+            className="items-center rounded-button border border-sky-200 bg-surface px-6 py-4"
           >
-            <Text className="text-body-md font-semibold text-lavender-700">Retour</Text>
+            <Text className="text-body-md font-semibold text-sky-700">Retour</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={handleSubmit}
             activeOpacity={0.7}
             disabled={!canSubmit}
             className={`flex-1 items-center rounded-button px-6 py-4 shadow-soft ${
-              canSubmit ? 'bg-lavender-300' : 'bg-lavender-100'
+              canSubmit ? 'bg-sky-300' : 'bg-sky-100'
             }`}
           >
             <Text
               className={`text-body-md font-semibold ${
-                canSubmit ? 'text-lavender-900' : 'text-lavender-400'
+                canSubmit ? 'text-sky-900' : 'text-sky-400'
               }`}
             >
               {createEntry.isPending ? 'Enregistrement…' : 'Enregistrer'}

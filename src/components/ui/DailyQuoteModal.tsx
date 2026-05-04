@@ -84,7 +84,7 @@ export function DailyQuoteModal() {
           <View className="w-full rounded-3xl bg-surface px-8 py-10 shadow-lg">
             <Text className="mb-6 text-center text-4xl">💜</Text>
 
-            <Text className="mb-1 text-center text-caption uppercase tracking-widest text-lavender-400">
+            <Text className="mb-1 text-center text-caption uppercase tracking-widest text-sky-400">
               Citation du jour
             </Text>
 
@@ -99,9 +99,9 @@ export function DailyQuoteModal() {
             <TouchableOpacity
               onPress={handleClose}
               activeOpacity={0.8}
-              className="items-center rounded-button bg-lavender-300 py-4"
+              className="items-center rounded-button bg-sky-300 py-4"
             >
-              <Text className="text-body-md font-semibold text-lavender-900">
+              <Text className="text-body-md font-semibold text-sky-900">
                 Commencer ma journée
               </Text>
             </TouchableOpacity>

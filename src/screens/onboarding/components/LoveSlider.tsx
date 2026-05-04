@@ -10,7 +10,7 @@ interface LoveSliderProps {
 export function LoveSlider({ value, onValueChange }: LoveSliderProps) {
   return (
     <View className="items-center">
-      <Text className="mb-6 text-6xl font-bold text-lavender-500">{value}</Text>
+      <Text className="mb-6 text-6xl font-bold text-sky-500">{value}</Text>
       <View className="w-full px-2">
         <Slider
           minimumValue={1}
@@ -18,9 +18,9 @@ export function LoveSlider({ value, onValueChange }: LoveSliderProps) {
           step={1}
           value={value}
           onValueChange={onValueChange}
-          minimumTrackTintColor={colors.lavender[400]}
-          maximumTrackTintColor={colors.lavender[100]}
-          thumbTintColor={colors.lavender[500]}
+          minimumTrackTintColor={colors.sky[400]}
+          maximumTrackTintColor={colors.sky[100]}
+          thumbTintColor={colors.sky[500]}
         />
       </View>
       <View className="mt-3 w-full flex-row justify-between px-2">

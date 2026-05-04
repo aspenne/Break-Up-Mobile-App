@@ -51,12 +51,12 @@ export default function JournalComposePromptScreen() {
         <TouchableOpacity
           onPress={() => goNext(null, null)}
           activeOpacity={0.7}
-          className="mb-6 rounded-card border border-lavender-200 bg-lavender-50 px-5 py-4"
+          className="mb-6 rounded-card border border-sky-200 bg-sky-50 px-5 py-4"
         >
-          <Text className="text-body-md font-semibold text-lavender-800">
+          <Text className="text-body-md font-semibold text-sky-800">
             ✍️ Écrire librement
           </Text>
-          <Caption className="mt-1 text-lavender-500">
+          <Caption className="mt-1 text-sky-500">
             Sans question, juste tes mots.
           </Caption>
         </TouchableOpacity>

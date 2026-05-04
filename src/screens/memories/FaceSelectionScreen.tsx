@@ -172,7 +172,7 @@ export default function FaceSelectionScreen() {
       <Container>
         <View className="flex-1 items-center justify-center px-4">
           <Heading className="text-center mb-4">Accès refusé</Heading>
-          <Body className="text-center text-lavender-600 mb-8">
+          <Body className="text-center text-sky-600 mb-8">
             Break-Up a besoin d'accéder à vos photos pour identifier les souvenirs.
           </Body>
           <Button title="Ouvrir les réglages" onPress={() => Linking.openSettings()} />
@@ -196,7 +196,7 @@ export default function FaceSelectionScreen() {
             gap: 16,
           }}>
           <ActivityIndicator size="large" color="#A78BFA" />
-          <Body className="text-lavender-600">
+          <Body className="text-sky-600">
             {loadProgress.total > 0
               ? `Chargement… ${loadProgress.loaded} / ${loadProgress.total}`
               : 'Chargement des photos…'}
@@ -207,10 +207,10 @@ export default function FaceSelectionScreen() {
       {/* Header */}
       <View className="px-6 pt-4 pb-3">
         <Pressable onPress={() => navigation.goBack()} className="mb-4">
-          <Caption className="text-lavender-500">← Retour</Caption>
+          <Caption className="text-sky-500">← Retour</Caption>
         </Pressable>
         <Heading>{editMode ? 'Modifier mes sources' : 'Choisir mes sources'}</Heading>
-        <Body className="text-lavender-600 mt-1">
+        <Body className="text-sky-600 mt-1">
           Sélectionnez des albums ou des photos individuelles
         </Body>
       </View>
@@ -222,7 +222,7 @@ export default function FaceSelectionScreen() {
           marginHorizontal: 24,
           marginBottom: 12,
           borderRadius: 12,
-          backgroundColor: '#F5F0FF',
+          backgroundColor: '#F0F9FF',
           padding: 4,
         }}>
         {(['albums', 'photos'] as Tab[]).map((tab) => {
@@ -251,7 +251,7 @@ export default function FaceSelectionScreen() {
                 style={{
                   fontSize: 14,
                   fontWeight: '600',
-                  color: active ? '#7C3AED' : '#9CA3AF',
+                  color: active ? '#0ea5e9' : '#6B7280',
                 }}>
                 {tab === 'albums' ? 'Albums' : 'Photos'}
               </Text>
@@ -264,7 +264,7 @@ export default function FaceSelectionScreen() {
       {activeTab === 'albums' ? (
         isLoadingAlbums ? (
           <View className="flex-1 items-center justify-center">
-            <ActivityIndicator size="large" color="#A78BFA" />
+            <ActivityIndicator size="large" color="#0ea5e9" />
           </View>
         ) : (
           <FlatList<PhotoAlbum>
@@ -284,8 +284,8 @@ export default function FaceSelectionScreen() {
                       borderRadius: 16,
                       overflow: 'hidden',
                       borderWidth: selected ? 3 : 0,
-                      borderColor: selected ? '#A78BFA' : 'transparent',
-                      backgroundColor: '#F5F0FF',
+                      borderColor: selected ? '#0ea5e9' : 'transparent',
+                      backgroundColor: '#F0F9FF',
                     }}>
                     <View style={{ aspectRatio: 1 }}>
                       {item.thumbnailUri ? (
@@ -328,7 +328,7 @@ export default function FaceSelectionScreen() {
                             width: 24,
                             height: 24,
                             borderRadius: 12,
-                            backgroundColor: '#7C3AED',
+                            backgroundColor: '#0ea5e9',
                             alignItems: 'center',
                             justifyContent: 'center',
                           }}>
@@ -344,7 +344,7 @@ export default function FaceSelectionScreen() {
                         style={{
                           fontSize: 13,
                           fontWeight: '600',
-                          color: selected ? '#7C3AED' : '#374151',
+                          color: selected ? '#0ea5e9' : '#374151',
                         }}>
                         {item.title || 'Sans titre'}
                       </Text>
@@ -355,7 +355,7 @@ export default function FaceSelectionScreen() {
             }}
             ListEmptyComponent={
               <View className="flex-1 items-center justify-center py-20 px-6">
-                <Body className="text-center text-lavender-500">
+                <Body className="text-center text-sky-500">
                   Aucun album trouvé dans votre galerie.
                 </Body>
               </View>
@@ -423,7 +423,7 @@ export default function FaceSelectionScreen() {
           ListEmptyComponent={
             !isLoadingGallery ? (
               <View className="flex-1 items-center justify-center py-20 px-6">
-                <Body className="text-center text-lavender-500">
+                <Body className="text-center text-sky-500">
                   Aucune photo trouvée.
                 </Body>
               </View>

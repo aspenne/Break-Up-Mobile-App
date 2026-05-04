@@ -3,32 +3,18 @@ module.exports = {
   content: ['./App.{js,ts,tsx}', './src/**/*.{js,ts,tsx}'],
 
   safelist: [
-    // sky (blog)
-    'bg-sky-50', 'bg-sky-100', 'border-sky-100', 'border-sky-200', 'text-sky-400', 'text-sky-500',
+    // sky (couleur principale + blog + chat)
+    'bg-sky-50', 'bg-sky-100', 'bg-sky-300', 'border-sky-100', 'border-sky-200', 'text-sky-400', 'text-sky-500', 'text-sky-600', 'text-sky-700',
     // sage (journal)
     'bg-sage-50', 'bg-sage-100', 'bg-sage-300', 'border-sage-200', 'text-sage-400', 'text-sage-600', 'text-sage-700', 'text-sage-900',
     // rose (souvenirs)
     'bg-rose-50', 'bg-rose-100', 'border-rose-100', 'border-rose-200', 'text-rose-400',
-    // lavender (chat)
-    'bg-lavender-50', 'bg-lavender-100', 'border-lavender-200', 'text-lavender-700',
   ],
 
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
       colors: {
-        lavender: {
-          50: '#faf8ff',
-          100: '#f3eeff',
-          200: '#e9e0ff',
-          300: '#d4c5fe',
-          400: '#b99bfc',
-          500: '#9e71f7',
-          600: '#8b4eee',
-          700: '#7a3cd9',
-          800: '#6632b6',
-          900: '#542b94',
-        },
         sky: {
           50: '#f0f9ff',
           100: '#e0f2fe',
@@ -36,6 +22,10 @@ module.exports = {
           300: '#7dd3fc',
           400: '#38bdf8',
           500: '#0ea5e9',
+          600: '#0284c7',
+          700: '#0369a1',
+          800: '#075985',
+          900: '#0c4a6e',
         },
         sage: {
           50: '#f6faf6',
@@ -66,12 +56,12 @@ module.exports = {
         },
         background: '#fef9f3',
         surface: '#ffffff',
-        'surface-secondary': '#faf8ff',
-        'text-primary': '#2d2438',
-        'text-secondary': '#6b6078',
-        'text-muted': '#9b93a8',
-        border: '#e9e0ff',
-        'border-light': '#f3eeff',
+        'surface-secondary': '#f0f9ff',
+        'text-primary': '#1e293b',
+        'text-secondary': '#64748b',
+        'text-muted': '#94a3b8',
+        border: '#bae6fd',
+        'border-light': '#e0f2fe',
       },
       fontSize: {
         'heading-xl': ['32px', { lineHeight: '40px' }],

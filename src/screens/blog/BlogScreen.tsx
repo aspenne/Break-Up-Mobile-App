@@ -36,22 +36,22 @@ export default function BlogScreen() {
   const listHeader = (
     <View className="mb-4 px-4">
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Heading style={{ color: colors.lavender[700] }}>Blog 📖</Heading>
+        <Heading style={{ color: colors.sky[700] }}>Blog 📖</Heading>
         {isAdmin && (
           <Pressable
             onPress={() => navigation.navigate('BlogArticleCreate')}
             style={{
-              backgroundColor: colors.lavender[300],
+              backgroundColor: colors.sky[300],
               paddingHorizontal: 14,
               paddingVertical: 8,
               borderRadius: 999,
-              shadowColor: colors.lavender[500],
+              shadowColor: colors.sky[500],
               shadowOpacity: 0.15,
               shadowRadius: 4,
               shadowOffset: { width: 0, height: 2 },
               elevation: 2,
             }}>
-            <Text style={{ color: colors.lavender[900], fontWeight: '700', fontSize: 13 }}>
+            <Text style={{ color: colors.sky[900], fontWeight: '700', fontSize: 13 }}>
               + Article
             </Text>
           </Pressable>
@@ -86,8 +86,8 @@ export default function BlogScreen() {
             activeOpacity={0.7}
             onPress={() => navigation.navigate('BlogArticle', { articleId: item.id })}
           >
-            <Card className="mx-4 mb-3 border border-lavender-100">
-              <Caption className="mb-1 uppercase" style={{ color: colors.lavender[400] }}>
+            <Card className="mx-4 mb-3 border border-sky-100">
+              <Caption className="mb-1 uppercase" style={{ color: colors.sky[400] }}>
                 {CATEGORY_LABELS[item.category] ?? item.category} · {item.readTimeMinutes} min
               </Caption>
               <Body className="font-semibold">{item.title}</Body>
@@ -100,7 +100,7 @@ export default function BlogScreen() {
         ListEmptyComponent={
           isError ? (
             <View className="px-4">
-              <Caption className="text-lavender-400 text-center" style={{ color: colors.lavender[400] }}>
+              <Caption className="text-sky-400 text-center" style={{ color: colors.sky[400] }}>
                 Impossible de charger les articles.
               </Caption>
             </View>

@@ -9,11 +9,11 @@ import {
   LoadingSpinner,
 } from '@/components';
 import { useMemories } from '@/hooks/useMemories';
-import { colors } from '@/theme';
 import type { MemoriesStackParamList } from '@/navigation/types';
 import { loadPhotosFromConfig } from '@/services/faceDetectionService';
 import { useMemoryStore } from '@/stores/useMemoryStore';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { colors } from '@/theme';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import { useCallback, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, Pressable, Text, View } from 'react-native';
@@ -91,37 +91,37 @@ export default function MemoriesScreen() {
 
   const listHeader = (
     <View className="px-6">
-      <Heading className="mb-6" style={{ color: colors.lavender[700] }}>Souvenirs 🗑️</Heading>
+      <Heading className="mb-6" style={{ color: colors.sky[700] }}>Souvenirs 🗑️</Heading>
 
       {/* Progress card */}
-      <Card className="mb-4 border border-lavender-200 bg-lavender-50">
+      <Card className="mb-4 border border-sky-200 bg-sky-50">
         <View className="mb-3 flex-row justify-between">
           <View className="items-center flex-1">
             <Text style={{ fontSize: 24, fontWeight: '700', color: '#EF4444' }}>
               {totalDeletedIncludingCurrent}
             </Text>
-            <Caption className="text-lavender-400 text-center">supprimées</Caption>
+            <Caption className="text-sky-400 text-center">supprimées</Caption>
           </View>
-          <View className="w-px bg-lavender-100" />
+          <View className="w-px bg-sky-100" />
           <View className="items-center flex-1">
             <Text style={{ fontSize: 24, fontWeight: '700', color: '#5A8F72' }}>
               {totalKeptIncludingCurrent}
             </Text>
-            <Caption className="text-lavender-400 text-center">conservées</Caption>
+            <Caption className="text-sky-400 text-center">conservées</Caption>
           </View>
-          <View className="w-px bg-lavender-100" />
+          <View className="w-px bg-sky-100" />
           <View className="items-center flex-1">
             <Text style={{ fontSize: 24, fontWeight: '700', color: '#9333ea' }}>
               {progressPercent}%
             </Text>
-            <Caption className="text-lavender-400 text-center">triées</Caption>
+            <Caption className="text-sky-400 text-center">triées</Caption>
           </View>
         </View>
 
         {totalInSources > 0 && (
-          <View className="mt-1 h-2 overflow-hidden rounded-full bg-lavender-100">
+          <View className="mt-1 h-2 overflow-hidden rounded-full bg-sky-100">
             <View
-              className="h-full rounded-full bg-lavender-300"
+              className="h-full rounded-full bg-sky-300"
               style={{ width: `${progressPercent}%` }}
             />
           </View>
@@ -131,24 +131,26 @@ export default function MemoriesScreen() {
       {/* Config summary */}
       {configSummary && (
         <View
+          className='bg-sky-50'
           style={{
             flexDirection: 'row',
-            alignItems: 'center',
+            alignItems: 'flex-end',
             justifyContent: 'space-between',
-            backgroundColor: '#fff5f5',
             borderRadius: 12,
             paddingHorizontal: 16,
             paddingVertical: 12,
             marginBottom: 12,
           }}>
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, }}>
             <Text style={{ fontSize: 13, color: '#6B7280' }}>Sources configurées</Text>
-            <Text style={{ fontSize: 14, fontWeight: '600', color: '#9333ea', marginTop: 2 }}>
+            <Text style={{ fontSize: 14, fontWeight: '600', color: '#6B7280', marginTop: 2 }}>
               {configSummary}
             </Text>
           </View>
           <Pressable onPress={handleEditSources}>
-            <Text style={{ fontSize: 13, fontWeight: '600', color: '#9333ea' }}>Modifier</Text>
+            <Text style={{ fontSize: 13, fontWeight: '600', color: '#6B7280' }}>
+              Modifier
+            </Text>
           </Pressable>
         </View>
       )}
@@ -211,7 +213,7 @@ export default function MemoriesScreen() {
             gap: 16,
           }}>
           <ActivityIndicator size="large" color="#A78BFA" />
-          <Body className="text-lavender-600">
+          <Body className="text-sky-600">
             {loadProgress.total > 0
               ? `Chargement… ${loadProgress.loaded} / ${loadProgress.total}`
               : 'Chargement des photos…'}

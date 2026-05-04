@@ -70,13 +70,13 @@ function MemoryCard({
             <TouchableOpacity
               onPress={onAdvance}
               className={`rounded-button px-3 py-1.5 ${
-                memory.stage === 'archived' ? 'bg-rose-100' : 'bg-lavender-100'
+                memory.stage === 'archived' ? 'bg-rose-100' : 'bg-sky-100'
               }`}
               activeOpacity={0.7}
             >
               <Text
                 className={`text-xs font-semibold ${
-                  memory.stage === 'archived' ? 'text-rose-400' : 'text-lavender-700'
+                  memory.stage === 'archived' ? 'text-rose-400' : 'text-sky-700'
                 }`}
               >
                 {nextLabel}
@@ -197,8 +197,8 @@ export default function DeletionProgressScreen() {
       </View>
 
       {/* Explanation */}
-      <View className="mx-6 mb-4 rounded-2xl bg-lavender-50 px-4 py-3">
-        <Caption className="text-center text-lavender-600">
+      <View className="mx-6 mb-4 rounded-2xl bg-sky-50 px-4 py-3">
+        <Caption className="text-center text-sky-600">
           {activeStage === 'hidden' &&
             'Ces photos sont masquées. Tu peux les archiver ou les restaurer.'}
           {activeStage === 'archived' &&

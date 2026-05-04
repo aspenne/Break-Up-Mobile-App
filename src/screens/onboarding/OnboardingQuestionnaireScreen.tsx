@@ -109,9 +109,9 @@ export default function OnboardingQuestionnaireScreen() {
             <TouchableOpacity
               onPress={() => setStep(step - 1)}
               activeOpacity={0.7}
-              className="items-center rounded-button border border-lavender-200 bg-surface px-6 py-4"
+              className="items-center rounded-button border border-sky-200 bg-surface px-6 py-4"
             >
-              <Text className="text-body-md font-semibold text-lavender-700">Retour</Text>
+              <Text className="text-body-md font-semibold text-sky-700">Retour</Text>
             </TouchableOpacity>
           )}
           <TouchableOpacity
@@ -119,12 +119,12 @@ export default function OnboardingQuestionnaireScreen() {
             activeOpacity={0.7}
             disabled={!canGoNext() || updateProfile.isPending}
             className={`flex-1 items-center rounded-button px-6 py-4 shadow-soft ${
-              canGoNext() && !updateProfile.isPending ? 'bg-lavender-300' : 'bg-lavender-100'
+              canGoNext() && !updateProfile.isPending ? 'bg-sky-300' : 'bg-sky-100'
             }`}
           >
             <Text
               className={`text-body-md font-semibold ${
-                canGoNext() && !updateProfile.isPending ? 'text-lavender-900' : 'text-lavender-400'
+                canGoNext() && !updateProfile.isPending ? 'text-sky-900' : 'text-sky-400'
               }`}
             >
               {step === TOTAL_STEPS - 1 ? 'Terminer' : 'Suivant'}

@@ -81,27 +81,27 @@ export default function CleanupCompleteScreen() {
             <Text style={{ fontSize: 36, fontWeight: '700', color: '#7C3AED' }}>
               {totalCount}
             </Text>
-            <Caption className="text-lavender-500">traitées</Caption>
+            <Caption className="text-sky-500">traitées</Caption>
           </View>
-          <View className="w-px bg-lavender-200" />
+          <View className="w-px bg-sky-200" />
           <View className="items-center">
             <Text style={{ fontSize: 36, fontWeight: '700', color: '#EF4444' }}>
               {deletedCount}
             </Text>
-            <Caption className="text-lavender-500">mises de côté</Caption>
+            <Caption className="text-sky-500">mises de côté</Caption>
           </View>
-          <View className="w-px bg-lavender-200" />
+          <View className="w-px bg-sky-200" />
           <View className="items-center">
             <Text style={{ fontSize: 36, fontWeight: '700', color: '#5A8F72' }}>
               {keptCount}
             </Text>
-            <Caption className="text-lavender-500">conservées</Caption>
+            <Caption className="text-sky-500">conservées</Caption>
           </View>
         </View>
 
         {/* Support message */}
-        <View className="bg-lavender-50 rounded-2xl px-6 py-5 mb-10 mx-2">
-          <Body className="text-center text-lavender-700 leading-6">
+        <View className="bg-sky-50 rounded-2xl px-6 py-5 mb-10 mx-2">
+          <Body className="text-center text-sky-700 leading-6">
             {getSupportMessage()}
           </Body>
         </View>

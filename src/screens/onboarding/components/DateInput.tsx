@@ -34,7 +34,7 @@ export function DateInput({ value, onChange }: DateInputProps) {
   };
 
   const cellClass =
-    'rounded-button border border-lavender-200 bg-surface px-4 py-3 text-body-md text-text-primary text-center';
+    'rounded-button border border-sky-200 bg-surface px-4 py-3 text-body-md text-text-primary text-center';
 
   return (
     <View>

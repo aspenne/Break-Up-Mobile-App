@@ -44,10 +44,10 @@ export default function ProfileScreen() {
       <TouchableOpacity
         onPress={() => navigation.navigate('Charter')}
         activeOpacity={0.7}
-        className="mb-3 flex-row items-center justify-between rounded-card border border-lavender-100 bg-surface px-5 py-4"
+        className="mb-3 flex-row items-center justify-between rounded-card border border-sky-100 bg-surface px-5 py-4"
       >
         <View className="flex-row items-center">
-          <Feather name="heart" size={18} color={colors.lavender[500]} />
+          <Feather name="heart" size={18} color={colors.sky[500]} />
           <Body className="ml-3 font-medium">Charte de bienveillance</Body>
         </View>
         <Feather name="chevron-right" size={18} color={colors.textMuted} />

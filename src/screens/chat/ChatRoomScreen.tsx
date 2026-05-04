@@ -32,13 +32,13 @@ function MessageBubble({ message, isOwn }: { message: Message; isOwn: boolean })
   return (
     <View className={`my-1 px-4 ${isOwn ? 'items-end' : 'items-start'}`}>
       {!isOwn && (
-        <Caption className="mb-0.5 ml-3 text-lavender-500">{message.senderName}</Caption>
+        <Caption className="mb-0.5 ml-3 text-sky-500">{message.senderName}</Caption>
       )}
       <View
         className={`max-w-[80%] rounded-2xl px-4 py-2.5 ${
           isOwn
-            ? 'rounded-br-sm bg-lavender-100'
-            : 'rounded-bl-sm border border-lavender-100 bg-surface'
+            ? 'rounded-br-sm bg-sky-100'
+            : 'rounded-bl-sm border border-sky-100 bg-surface'
         }`}
       >
         <Text className="text-body-md text-text-primary">{message.content}</Text>
@@ -88,7 +88,7 @@ export default function ChatRoomScreen() {
   return (
     <SafeAreaView className="flex-1 bg-background" edges={['top', 'left', 'right']}>
       {/* Header */}
-      <View className="flex-row items-center border-b border-lavender-100 px-4 pb-3 pt-2">
+      <View className="flex-row items-center border-b border-sky-100 px-4 pb-3 pt-2">
         <TouchableOpacity onPress={() => navigation.goBack()} className="mr-3 p-1">
           <Feather name="arrow-left" size={24} color={colors.textPrimary} />
         </TouchableOpacity>
@@ -102,7 +102,7 @@ export default function ChatRoomScreen() {
           <Feather
             name={isAnonymous ? 'eye-off' : 'eye'}
             size={20}
-            color={isAnonymous ? colors.lavender[500] : colors.textMuted}
+            color={isAnonymous ? colors.sky[500] : colors.textMuted}
           />
         </TouchableOpacity>
       </View>
@@ -133,10 +133,10 @@ export default function ChatRoomScreen() {
         />
 
         {/* Input bar */}
-        <View className="flex-row items-end border-t border-lavender-100 bg-surface px-4 py-3">
+        <View className="flex-row items-end border-t border-sky-100 bg-surface px-4 py-3">
           <View className="mr-3 flex-1">
             <TextInput
-              className="max-h-24 rounded-2xl border border-lavender-200 bg-background px-4 py-2.5 text-body-md text-text-primary"
+              className="max-h-24 rounded-2xl border border-sky-200 bg-background px-4 py-2.5 text-body-md text-text-primary"
               placeholder="Votre message..."
               placeholderTextColor={colors.textMuted}
               value={text}
@@ -145,7 +145,7 @@ export default function ChatRoomScreen() {
               returnKeyType="default"
             />
             {isAnonymous && (
-              <Caption className="ml-2 mt-1 text-lavender-400">
+              <Caption className="ml-2 mt-1 text-sky-400">
                 Mode anonyme activé
               </Caption>
             )}
@@ -154,13 +154,13 @@ export default function ChatRoomScreen() {
             onPress={handleSend}
             disabled={!text.trim() || sendMessage.isPending}
             className={`mb-1 items-center justify-center rounded-full p-3 ${
-              text.trim() ? 'bg-lavender-300' : 'bg-lavender-100'
+              text.trim() ? 'bg-sky-300' : 'bg-sky-100'
             }`}
           >
             <Feather
               name="send"
               size={18}
-              color={text.trim() ? colors.lavender[900] : colors.lavender[400]}
+              color={text.trim() ? colors.sky[900] : colors.sky[400]}
             />
           </TouchableOpacity>
         </View>

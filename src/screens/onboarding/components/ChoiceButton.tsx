@@ -14,14 +14,14 @@ export function ChoiceButton({ label, selected, onPress, emoji }: ChoiceButtonPr
       activeOpacity={0.7}
       className={`flex-row items-center rounded-button border px-5 py-3.5 ${
         selected
-          ? 'border-lavender-400 bg-lavender-100'
-          : 'border-lavender-200 bg-surface'
+          ? 'border-sky-400 bg-sky-100'
+          : 'border-sky-200 bg-surface'
       }`}
     >
       {emoji ? <Text className="mr-2 text-xl">{emoji}</Text> : null}
       <Text
         className={`text-body-md ${
-          selected ? 'font-semibold text-lavender-800' : 'text-text-secondary'
+          selected ? 'font-semibold text-sky-800' : 'text-text-secondary'
         }`}
       >
         {label}
