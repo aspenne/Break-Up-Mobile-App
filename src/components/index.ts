@@ -8,3 +8,4 @@ export { LoadingSpinner } from './ui/LoadingSpinner';
 export { SwipeCard } from './ui/SwipeCard';
 export type { SwipeCardRef } from './ui/SwipeCard';
 export { DailyQuoteModal } from './ui/DailyQuoteModal';
+export { Logo } from './ui/Logo';
