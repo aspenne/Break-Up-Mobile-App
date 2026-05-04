@@ -81,9 +81,8 @@ const TabNavigator = createBottomTabNavigator({
       screen: ProfileStack,
       options: {
         title: 'Profil',
-        tabBarIcon: ({ color, size }: { color: string; size: number }) => (
-          <Feather name="user" color={color} size={size} />
-        ),
+        tabBarItemStyle: { display: 'none' },
+        tabBarButton: () => null,
       },
     },
   },

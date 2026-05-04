@@ -1,4 +1,4 @@
-import { View, Text, Alert, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, Alert, TouchableOpacity, ScrollView, Pressable } from 'react-native';
 import { useNavigation, type NavigationProp } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { Container, Heading, Body, Button, Card, Caption } from '@/components';
@@ -35,8 +35,16 @@ export default function ProfileScreen() {
   return (
     <Container>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 32 }}>
-        <View className="pb-6 pt-12">
+        <View className="flex-row items-center justify-between pb-6 pt-12">
           <Heading className="text-heading-xl">Mon profil</Heading>
+          <Pressable
+            onPress={() => (navigation as unknown as { navigate: (t: string) => void }).navigate('HomeTab')}
+            hitSlop={8}
+            accessibilityLabel="Retour à l'accueil"
+            style={{ padding: 8 }}
+          >
+            <Feather name="x" size={24} color={colors.textMuted} />
+          </Pressable>
         </View>
 
         <Card className="mb-6 items-center py-8">

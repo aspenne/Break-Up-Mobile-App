@@ -1,4 +1,4 @@
-import { Body, Caption, Card, Container, EmptyState, Heading, LoadingSpinner } from '@/components';
+import { Body, Caption, Card, Container, EmptyState, Heading, LoadingSpinner, ProfileButton } from '@/components';
 import { useChatRooms, useJoinRoom } from '@/hooks/useChat';
 import type { ChatStackParamList } from '@/navigation/types';
 import { useChatStore } from '@/stores';
@@ -95,7 +95,10 @@ export default function ChatScreen() {
 
   const listHeader = (
     <View className="mb-4 px-4">
-      <Heading className="mb-4" style={{ color: colors.sky[700] }}>Chat 💬</Heading>
+      <View className="mb-4 flex-row items-center justify-between">
+        <Heading style={{ color: colors.sky[700] }}>Chat 💬</Heading>
+        <ProfileButton />
+      </View>
       <View className="flex-row items-center justify-between rounded-card bg-surface-secondary px-4 py-3">
         <View className="flex-row items-center">
           <Feather name={isAnonymous ? 'eye-off' : 'eye'} size={16} color={colors.sky[500]} />

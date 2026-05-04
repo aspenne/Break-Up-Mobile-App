@@ -7,6 +7,7 @@ import {
   EmptyState,
   Heading,
   LoadingSpinner,
+  ProfileButton,
 } from '@/components';
 import { useMemories } from '@/hooks/useMemories';
 import type { MemoriesStackParamList } from '@/navigation/types';
@@ -76,7 +77,10 @@ export default function MemoriesScreen() {
 
   const listHeader = (
     <View className="px-6">
-      <Heading className="mb-6" style={{ color: colors.sky[700] }}>Souvenirs 🗑️</Heading>
+      <View className="mb-6 flex-row items-center justify-between">
+        <Heading style={{ color: colors.sky[700] }}>Souvenirs 🗑️</Heading>
+        <ProfileButton />
+      </View>
 
       {/* Progress card */}
       <Card className="mb-4 border border-sky-200 bg-sky-50">

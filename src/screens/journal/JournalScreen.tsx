@@ -10,6 +10,7 @@ import {
   Caption,
   LoadingSpinner,
   EmptyState,
+  ProfileButton,
 } from '@/components';
 import { useJournalEntries } from '@/hooks/useJournal';
 import { colors } from '@/theme';
@@ -31,7 +32,10 @@ export default function JournalScreen() {
 
   const header = (
     <View className="mb-4 px-4">
-      <Heading className="mb-4" style={{ color: colors.sky[700] }}>Journal ✍️</Heading>
+      <View className="mb-4 flex-row items-center justify-between">
+        <Heading style={{ color: colors.sky[700] }}>Journal ✍️</Heading>
+        <ProfileButton />
+      </View>
       <TouchableOpacity
         activeOpacity={0.8}
         disabled={hasEntryToday}

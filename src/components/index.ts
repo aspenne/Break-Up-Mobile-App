@@ -9,3 +9,4 @@ export { SwipeCard } from './ui/SwipeCard';
 export type { SwipeCardRef } from './ui/SwipeCard';
 export { DailyQuoteModal } from './ui/DailyQuoteModal';
 export { Logo } from './ui/Logo';
+export { ProfileButton } from './ui/ProfileButton';

@@ -6,6 +6,7 @@ import {
   EmptyState,
   Heading,
   LoadingSpinner,
+  ProfileButton,
 } from '@/components';
 import { useArticles } from '@/hooks/useBlog';
 import { colors } from '@/theme';
@@ -35,27 +36,30 @@ export default function BlogScreen() {
 
   const listHeader = (
     <View className="mb-4 px-4">
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
         <Heading style={{ color: colors.sky[700] }}>Blog 📖</Heading>
-        {isAdmin && (
-          <Pressable
-            onPress={() => navigation.navigate('BlogArticleCreate')}
-            style={{
-              backgroundColor: colors.sky[300],
-              paddingHorizontal: 14,
-              paddingVertical: 8,
-              borderRadius: 999,
-              shadowColor: colors.sky[500],
-              shadowOpacity: 0.15,
-              shadowRadius: 4,
-              shadowOffset: { width: 0, height: 2 },
-              elevation: 2,
-            }}>
-            <Text style={{ color: colors.sky[900], fontWeight: '700', fontSize: 13 }}>
-              + Article
-            </Text>
-          </Pressable>
-        )}
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+          {isAdmin && (
+            <Pressable
+              onPress={() => navigation.navigate('BlogArticleCreate')}
+              style={{
+                backgroundColor: colors.sky[300],
+                paddingHorizontal: 14,
+                paddingVertical: 8,
+                borderRadius: 999,
+                shadowColor: colors.sky[500],
+                shadowOpacity: 0.15,
+                shadowRadius: 4,
+                shadowOffset: { width: 0, height: 2 },
+                elevation: 2,
+              }}>
+              <Text style={{ color: colors.sky[900], fontWeight: '700', fontSize: 13 }}>
+                + Article
+              </Text>
+            </Pressable>
+          )}
+          <ProfileButton />
+        </View>
       </View>
     </View>
   );

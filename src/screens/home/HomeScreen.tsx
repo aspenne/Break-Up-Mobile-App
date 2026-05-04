@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Container, Heading, Body, DailyQuoteModal, Logo } from '@/components';
+import { Container, Heading, Body, DailyQuoteModal, Logo, ProfileButton } from '@/components';
 import { useMe } from '@/hooks/useAuth';
 
 type TabNav = {
@@ -64,6 +64,7 @@ export default function HomeScreen() {
             </Heading>
             <Body className="text-text-muted">Chaque jour est un pas en avant.</Body>
           </View>
+          <ProfileButton />
         </View>
 
         {/* 2x2 grid */}
