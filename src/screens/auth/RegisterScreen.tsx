@@ -9,7 +9,7 @@ import {
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
-import { Container, Heading, Body } from '@/components';
+import { Container, Heading, Body, Logo } from '@/components';
 import { useRegister } from '@/hooks/useAuth';
 import { useNavigation, type NavigationProp } from '@react-navigation/native';
 
@@ -74,8 +74,8 @@ export default function RegisterScreen() {
           keyboardShouldPersistTaps="handled"
         >
           <View className="mb-8 items-center">
-            <Text className="mb-2 text-5xl">🌱</Text>
-            <Heading className="text-center text-heading-xl">Nouveau départ</Heading>
+            <Logo size="md" withWordmark />
+            <Heading className="mt-4 text-center text-heading-xl">Nouveau départ</Heading>
             <Body className="mt-2 text-center">Créez votre compte pour commencer.</Body>
           </View>
 
@@ -91,7 +91,7 @@ export default function RegisterScreen() {
               <TextInput
                 className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
                 placeholder="Prénom"
-                placeholderTextColor="#9b93a8"
+                placeholderTextColor="#94a3b8"
                 value={firstName}
                 onChangeText={setFirstName}
                 autoCapitalize="words"
@@ -102,7 +102,7 @@ export default function RegisterScreen() {
               <TextInput
                 className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
                 placeholder="Nom"
-                placeholderTextColor="#9b93a8"
+                placeholderTextColor="#94a3b8"
                 value={lastName}
                 onChangeText={setLastName}
                 autoCapitalize="words"
@@ -115,7 +115,7 @@ export default function RegisterScreen() {
             <TextInput
               className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
               placeholder="votre@email.com"
-              placeholderTextColor="#9b93a8"
+              placeholderTextColor="#94a3b8"
               value={email}
               onChangeText={setEmail}
               keyboardType="email-address"
@@ -131,7 +131,7 @@ export default function RegisterScreen() {
             <TextInput
               className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
               placeholder="Minimum 8 caractères"
-              placeholderTextColor="#9b93a8"
+              placeholderTextColor="#94a3b8"
               value={password}
               onChangeText={setPassword}
               secureTextEntry
@@ -145,7 +145,7 @@ export default function RegisterScreen() {
             <TextInput
               className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
               placeholder="Retapez votre mot de passe"
-              placeholderTextColor="#9b93a8"
+              placeholderTextColor="#94a3b8"
               value={confirmPassword}
               onChangeText={setConfirmPassword}
               secureTextEntry
@@ -159,7 +159,7 @@ export default function RegisterScreen() {
             disabled={register.isPending}
           >
             {register.isPending ? (
-              <ActivityIndicator color="#542b94" />
+              <ActivityIndicator color="#0c4a6e" />
             ) : (
               <Text className="text-body-md font-semibold text-sky-900">Créer mon compte</Text>
             )}
