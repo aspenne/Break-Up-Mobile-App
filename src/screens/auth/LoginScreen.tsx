@@ -9,7 +9,7 @@ import {
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
-import { Container, Heading, Body } from '@/components';
+import { Container, Heading, Body, Logo } from '@/components';
 import { useLogin } from '@/hooks/useAuth';
 import { useNavigation, type NavigationProp } from '@react-navigation/native';
 
@@ -56,9 +56,9 @@ export default function LoginScreen() {
           contentContainerClassName="flex-1 justify-center"
           keyboardShouldPersistTaps="handled"
         >
-          <View className="mb-10 items-center">
-            <Text className="mb-2 text-5xl">💜</Text>
-            <Heading className="text-center text-heading-xl">Bon retour</Heading>
+          <View className="mb-10 items-center pt-4">
+            <Logo size="lg" withWordmark />
+            <Heading className="mt-4 text-center text-heading-xl">Bon retour</Heading>
             <Body className="mt-2 text-center">Connectez-vous pour continuer.</Body>
           </View>
 
@@ -73,7 +73,7 @@ export default function LoginScreen() {
             <TextInput
               className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
               placeholder="votre@email.com"
-              placeholderTextColor="#9b93a8"
+              placeholderTextColor="#94a3b8"
               value={email}
               onChangeText={setEmail}
               keyboardType="email-address"
@@ -89,7 +89,7 @@ export default function LoginScreen() {
             <TextInput
               className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
               placeholder="••••••••"
-              placeholderTextColor="#9b93a8"
+              placeholderTextColor="#94a3b8"
               value={password}
               onChangeText={setPassword}
               secureTextEntry
@@ -112,7 +112,7 @@ export default function LoginScreen() {
             disabled={login.isPending}
           >
             {login.isPending ? (
-              <ActivityIndicator color="#542b94" />
+              <ActivityIndicator color="#0c4a6e" />
             ) : (
               <Text className="text-body-md font-semibold text-sky-900">Se connecter</Text>
             )}
