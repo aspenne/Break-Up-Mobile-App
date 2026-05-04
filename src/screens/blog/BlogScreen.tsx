@@ -14,7 +14,7 @@ import { useUserStore } from '@/stores';
 import type { BlogStackParamList } from '@/navigation/types';
 import { useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
-import { FlatList, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Image, Pressable, Text, TouchableOpacity, View } from 'react-native';
 
 type Nav = StackNavigationProp<BlogStackParamList, 'BlogList'>;
 
@@ -90,14 +90,23 @@ export default function BlogScreen() {
             activeOpacity={0.7}
             onPress={() => navigation.navigate('BlogArticle', { articleId: item.id })}
           >
-            <Card className="mx-4 mb-3 border border-sky-100">
-              <Caption className="mb-1 uppercase" style={{ color: colors.sky[400] }}>
-                {CATEGORY_LABELS[item.category] ?? item.category} · {item.readTimeMinutes} min
-              </Caption>
-              <Body className="font-semibold">{item.title}</Body>
-              <Caption className="mt-1" style={{ color: colors.textMuted }}>
-                {item.excerpt}
-              </Caption>
+            <Card className="mx-4 mb-3 overflow-hidden border border-sky-100 p-0">
+              {item.imageUrl ? (
+                <Image
+                  source={{ uri: item.imageUrl }}
+                  style={{ width: '100%', height: 140, backgroundColor: colors.sky[50] }}
+                  resizeMode="cover"
+                />
+              ) : null}
+              <View className="p-4">
+                <Caption className="mb-1 uppercase" style={{ color: colors.sky[400] }}>
+                  {CATEGORY_LABELS[item.category] ?? item.category} · {item.readTimeMinutes} min
+                </Caption>
+                <Body className="font-semibold">{item.title}</Body>
+                <Caption className="mt-1" style={{ color: colors.textMuted }} numberOfLines={2}>
+                  {item.excerpt}
+                </Caption>
+              </View>
             </Card>
           </TouchableOpacity>
         )}

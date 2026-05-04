@@ -1,4 +1,4 @@
-import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, TouchableOpacity, Image } from 'react-native';
 import { useNavigation, useRoute, type RouteProp } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import { Container, Heading, Caption, LoadingSpinner, BackButton } from '@/components';
@@ -54,6 +54,20 @@ export default function BlogArticleScreen() {
         contentContainerStyle={{ paddingBottom: 40 }}
         showsVerticalScrollIndicator={false}
       >
+        {article.imageUrl ? (
+          <Image
+            source={{ uri: article.imageUrl }}
+            style={{
+              width: '100%',
+              height: 200,
+              borderRadius: 16,
+              marginBottom: 16,
+              backgroundColor: colors.sky[50],
+            }}
+            resizeMode="cover"
+          />
+        ) : null}
+
         <Caption className="mb-2 uppercase tracking-wider text-sky-500">
           {CATEGORY_LABELS[article.category] ?? article.category} · {article.readTimeMinutes} min
         </Caption>

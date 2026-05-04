@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {
   Alert,
+  Image,
   KeyboardAvoidingView,
   Platform,
   Pressable,
@@ -36,6 +37,7 @@ export default function BlogArticleCreateScreen() {
   const [content, setContent] = useState('');
   const [category, setCategory] = useState<ArticleCategory>('rebuilding');
   const [readTimeMinutes, setReadTimeMinutes] = useState('5');
+  const [imageUrl, setImageUrl] = useState('');
 
   const handleSubmit = () => {
     const minutes = parseInt(readTimeMinutes, 10);
@@ -59,6 +61,7 @@ export default function BlogArticleCreateScreen() {
         content: content.trim(),
         category,
         readTimeMinutes: minutes,
+        imageUrl: imageUrl.trim() || undefined,
       },
       {
         onSuccess: () => {
@@ -172,6 +175,46 @@ export default function BlogArticleCreateScreen() {
               width: 100,
             }}
           />
+
+          {/* Image URL */}
+          <Caption className="mb-2 uppercase tracking-wider" style={{ color: colors.sky[500] }}>
+            Image (URL, optionnel)
+          </Caption>
+          <TextInput
+            value={imageUrl}
+            onChangeText={setImageUrl}
+            placeholder="https://…"
+            placeholderTextColor={colors.textMuted}
+            autoCapitalize="none"
+            autoCorrect={false}
+            keyboardType="url"
+            style={{
+              backgroundColor: '#fff',
+              borderRadius: 12,
+              borderWidth: 1,
+              borderColor: colors.sky[100],
+              paddingHorizontal: 14,
+              paddingVertical: 12,
+              fontSize: 15,
+              color: colors.textPrimary,
+              marginBottom: 12,
+            }}
+          />
+          {imageUrl.trim() ? (
+            <Image
+              source={{ uri: imageUrl.trim() }}
+              style={{
+                width: '100%',
+                height: 160,
+                borderRadius: 12,
+                marginBottom: 20,
+                backgroundColor: colors.sky[50],
+              }}
+              resizeMode="cover"
+            />
+          ) : (
+            <View style={{ marginBottom: 20 }} />
+          )}
 
           {/* Excerpt */}
           <Caption className="mb-2 uppercase tracking-wider" style={{ color: colors.sky[500] }}>

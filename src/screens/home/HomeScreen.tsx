@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Pressable } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Pressable, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { Container, Heading, Body, Caption, Card, DailyQuoteModal, Logo, ProfileButton } from '@/components';
@@ -143,17 +143,26 @@ export default function HomeScreen() {
         {featuredArticle && (
           <Pressable
             onPress={() => navigation.navigate('BlogTab')}
-            className="mb-4 rounded-card border border-sky-100 bg-surface p-5 shadow-soft"
+            className="mb-4 overflow-hidden rounded-card border border-sky-100 bg-surface shadow-soft"
           >
-            <Caption className="mb-1 uppercase tracking-wider text-sky-500">
-              📖 Article du jour
-            </Caption>
-            <Body className="font-semibold" numberOfLines={2}>
-              {featuredArticle.title}
-            </Body>
-            <Caption className="mt-1 text-text-muted" numberOfLines={2}>
-              {featuredArticle.excerpt}
-            </Caption>
+            {featuredArticle.imageUrl ? (
+              <Image
+                source={{ uri: featuredArticle.imageUrl }}
+                style={{ width: '100%', height: 120, backgroundColor: colors.sky[50] }}
+                resizeMode="cover"
+              />
+            ) : null}
+            <View className="p-5">
+              <Caption className="mb-1 uppercase tracking-wider text-sky-500">
+                📖 Article du jour
+              </Caption>
+              <Body className="font-semibold" numberOfLines={2}>
+                {featuredArticle.title}
+              </Body>
+              <Caption className="mt-1 text-text-muted" numberOfLines={2}>
+                {featuredArticle.excerpt}
+              </Caption>
+            </View>
           </Pressable>
         )}
 
