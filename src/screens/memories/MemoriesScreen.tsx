@@ -72,22 +72,7 @@ export default function MemoriesScreen() {
     }
   }, [store, memoriesConfig, navigation]);
 
-  const handleEditSources = useCallback(() => {
-    navigation.navigate('FaceSelection', { editMode: true });
-  }, [navigation]);
-
   const memories = data?.data ?? [];
-
-  const configSummary = memoriesConfig
-    ? [
-        memoriesConfig.albumIds.length > 0 &&
-          `(${totalInSources}) ${memoriesConfig.albumIds.length} album${memoriesConfig.albumIds.length > 1 ? 's' : ''}`,
-        memoriesConfig.individualAssetIds.length > 0 &&
-          `${memoriesConfig.individualAssetIds.length} photo${memoriesConfig.individualAssetIds.length > 1 ? 's' : ''}`,
-      ]
-        .filter(Boolean)
-        .join(', ')
-    : null;
 
   const listHeader = (
     <View className="px-6">
@@ -104,14 +89,14 @@ export default function MemoriesScreen() {
           </View>
           <View className="w-px bg-sky-100" />
           <View className="items-center flex-1">
-            <Text style={{ fontSize: 24, fontWeight: '700', color: '#5A8F72' }}>
+            <Text style={{ fontSize: 24, fontWeight: '700', color: '#467c46' }}>
               {totalKeptIncludingCurrent}
             </Text>
             <Caption className="text-sky-400 text-center">conservées</Caption>
           </View>
           <View className="w-px bg-sky-100" />
           <View className="items-center flex-1">
-            <Text style={{ fontSize: 24, fontWeight: '700', color: '#9333ea' }}>
+            <Text style={{ fontSize: 24, fontWeight: '700', color: '#0284c7' }}>
               {progressPercent}%
             </Text>
             <Caption className="text-sky-400 text-center">triées</Caption>
@@ -127,33 +112,6 @@ export default function MemoriesScreen() {
           </View>
         )}
       </Card>
-
-      {/* Config summary */}
-      {configSummary && (
-        <View
-          className='bg-sky-50'
-          style={{
-            flexDirection: 'row',
-            alignItems: 'flex-end',
-            justifyContent: 'space-between',
-            borderRadius: 12,
-            paddingHorizontal: 16,
-            paddingVertical: 12,
-            marginBottom: 12,
-          }}>
-          <View style={{ flex: 1, }}>
-            <Text style={{ fontSize: 13, color: '#6B7280' }}>Sources configurées</Text>
-            <Text style={{ fontSize: 14, fontWeight: '600', color: '#6B7280', marginTop: 2 }}>
-              {configSummary}
-            </Text>
-          </View>
-          <Pressable onPress={handleEditSources}>
-            <Text style={{ fontSize: 13, fontWeight: '600', color: '#6B7280' }}>
-              Modifier
-            </Text>
-          </Pressable>
-        </View>
-      )}
 
       {/* CTA */}
       <Button
@@ -212,7 +170,7 @@ export default function MemoriesScreen() {
             justifyContent: 'center',
             gap: 16,
           }}>
-          <ActivityIndicator size="large" color="#A78BFA" />
+          <ActivityIndicator size="large" color="#7dd3fc" />
           <Body className="text-sky-600">
             {loadProgress.total > 0
               ? `Chargement… ${loadProgress.loaded} / ${loadProgress.total}`
