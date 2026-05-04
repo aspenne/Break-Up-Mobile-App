@@ -5,7 +5,8 @@ export type EmotionalState =
   | 'neutral'
   | 'hopeful'
   | 'growing'
-  | 'thriving';
+  | 'thriving'
+  | 'other';
 
 export interface JournalPrompt {
   id: number;
@@ -23,6 +24,7 @@ export interface JournalEntry {
   title: string;
   content: string;
   emotion: EmotionalState;
+  customEmotion: string | null;
   createdAt: string;
   updatedAt: string;
   prompt?: JournalPrompt | null;
@@ -86,6 +88,13 @@ export const JOURNAL_EMOTION_CONFIG: Record<
     borderClass: 'border-sage-400',
     textClass: 'text-sage-900',
   },
+  other: {
+    label: 'Autre…',
+    emoji: '✏️',
+    bgClass: 'bg-cream-100',
+    borderClass: 'border-cream-300',
+    textClass: 'text-text-primary',
+  },
 };
 
 export const EMOTION_ORDER: EmotionalState[] = [
@@ -96,4 +105,5 @@ export const EMOTION_ORDER: EmotionalState[] = [
   'hopeful',
   'growing',
   'thriving',
+  'other',
 ];

@@ -22,7 +22,7 @@ type Nav = StackNavigationProp<JournalStackParamList, 'JournalComposeContent'>;
 
 export default function JournalComposeContentScreen() {
   const navigation = useNavigation<Nav>();
-  const { emotion, promptId, promptQuestion, content, setContent, reset } =
+  const { emotion, customEmotion, promptId, promptQuestion, content, setContent, reset } =
     useJournalComposeStore();
   const createEntry = useCreateJournalEntry();
   const [error, setError] = useState<string | null>(null);
@@ -47,6 +47,7 @@ export default function JournalComposeContentScreen() {
         title: autoTitle,
         content: content.trim(),
         emotion,
+        customEmotion: emotion === 'other' ? (customEmotion ?? undefined) : undefined,
         promptId: promptId ?? undefined,
       });
       reset();
@@ -83,7 +84,7 @@ export default function JournalComposeContentScreen() {
           >
             <Text className="mr-2 text-2xl">{emotionConf.emoji}</Text>
             <Text className={`text-body-md font-semibold ${emotionConf.textClass}`}>
-              {emotionConf.label}
+              {emotion === 'other' && customEmotion ? customEmotion : emotionConf.label}
             </Text>
           </View>
 

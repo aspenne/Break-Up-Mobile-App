@@ -29,6 +29,7 @@ export function useCreateJournalEntry() {
       title: string;
       content: string;
       emotion: EmotionalState;
+      customEmotion?: string;
       promptId?: number;
     }) => {
       const { data } = await apiClient.post<JournalEntry>(

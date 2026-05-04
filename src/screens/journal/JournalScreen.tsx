@@ -96,7 +96,7 @@ export default function JournalScreen() {
                   <View className="flex-1">
                     <Body className="font-semibold">{item.title}</Body>
                     <Caption className="mt-1">
-                      {conf.label} ·{' '}
+                      {item.emotion === 'other' && item.customEmotion ? item.customEmotion : conf.label} ·{' '}
                       {new Date(item.createdAt).toLocaleDateString('fr-FR')}
                     </Caption>
                   </View>
