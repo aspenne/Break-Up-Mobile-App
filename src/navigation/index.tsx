@@ -71,9 +71,9 @@ const TabNavigator = createBottomTabNavigator({
     JournalTab: {
       screen: JournalStack,
       options: {
-        title: 'Journal',
+        title: 'Mood',
         tabBarIcon: ({ color, size }: { color: string; size: number }) => (
-          <Feather name="edit-3" color={color} size={size} />
+          <Feather name="smile" color={color} size={size} />
         ),
       },
     },

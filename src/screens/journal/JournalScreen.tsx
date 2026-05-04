@@ -33,7 +33,7 @@ export default function JournalScreen() {
   const header = (
     <View className="mb-4 px-4">
       <View className="mb-4 flex-row items-center justify-between">
-        <Heading style={{ color: colors.sky[700] }}>Journal ✍️</Heading>
+        <Heading style={{ color: colors.sky[700] }}>Mood 🌤️</Heading>
         <ProfileButton />
       </View>
       <TouchableOpacity

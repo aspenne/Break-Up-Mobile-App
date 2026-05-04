@@ -43,9 +43,9 @@ const FEATURE_CARDS = [
     tab: 'BlogTab',
   },
   {
-    title: 'Journal',
-    description: 'Suis ton évolution',
-    emojis: '✍️',
+    title: 'Mood',
+    description: 'Suis ton évolution émotionnelle',
+    emojis: '🌤️',
     bgClass: 'bg-sky-50',
     borderClass: 'border-sky-200',
     titleClass: 'text-sky-700',
