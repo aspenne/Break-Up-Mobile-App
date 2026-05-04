@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Container, Heading, Body, DailyQuoteModal } from '@/components';
+import { Container, Heading, Body, DailyQuoteModal, Logo } from '@/components';
 import { useMe } from '@/hooks/useAuth';
 
 type TabNav = {
@@ -56,11 +56,14 @@ export default function HomeScreen() {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 32 }}>
 
         {/* Header */}
-        <View className="pb-6 pt-12">
-          <Heading className="mb-1 text-heading-xl">
-            Bonjour {user?.firstName ?? ''} {user?.avatarEmoji ?? ''}
-          </Heading>
-          <Body className="text-text-muted">Chaque jour est un pas en avant.</Body>
+        <View className="flex-row items-center pb-6 pt-12">
+          <Logo size="sm" />
+          <View className="ml-3 flex-1">
+            <Heading className="mb-1 text-heading-lg" numberOfLines={2} adjustsFontSizeToFit>
+              Bonjour {user?.firstName ?? ''} {user?.avatarEmoji ?? ''}
+            </Heading>
+            <Body className="text-text-muted">Chaque jour est un pas en avant.</Body>
+          </View>
         </View>
 
         {/* 2x2 grid */}
@@ -74,10 +77,17 @@ export default function HomeScreen() {
               style={{ minHeight: 140 }}
             >
               <Text className="mb-3 text-3xl">{card.emojis}</Text>
-              <Text className={`mb-1 text-body-md font-bold ${card.titleClass}`}>
+              <Text
+                className={`mb-1 text-body-md font-bold ${card.titleClass}`}
+                numberOfLines={1}
+                adjustsFontSizeToFit
+              >
                 {card.title}
               </Text>
-              <Text className="text-body-sm leading-snug text-text-muted">
+              <Text
+                className="text-body-sm leading-snug text-text-muted"
+                numberOfLines={2}
+              >
                 {card.description}
               </Text>
             </TouchableOpacity>
