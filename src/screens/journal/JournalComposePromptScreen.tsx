@@ -12,6 +12,22 @@ import { ComposeHeader } from './components/ComposeHeader';
 
 type Nav = StackNavigationProp<JournalStackParamList, 'JournalComposePrompt'>;
 
+const PROMPT_CATEGORY_LABELS: Record<string, string> = {
+  feelings: 'Ressentis',
+  grief: 'Deuil',
+  gratitude: 'Gratitude',
+  reflection: 'Réflexion',
+  growth: 'Évolution',
+  release: 'Lâcher-prise',
+  progress: 'Progrès',
+  vision: 'Projection',
+  healing: 'Guérison',
+  joy: 'Joie',
+  wisdom: 'Sagesse',
+  strength: 'Force intérieure',
+  future: 'Futur',
+};
+
 export default function JournalComposePromptScreen() {
   const navigation = useNavigation<Nav>();
   const user = useUserStore((s) => s.user);
@@ -72,7 +88,7 @@ export default function JournalComposePromptScreen() {
         {Object.entries(grouped).map(([category, items]) => (
           <View key={category} className="mb-6">
             <Caption className="mb-2 uppercase tracking-wider text-text-muted">
-              {category}
+              {PROMPT_CATEGORY_LABELS[category] ?? category}
             </Caption>
             <View className="gap-2">
               {items.map((p) => (
