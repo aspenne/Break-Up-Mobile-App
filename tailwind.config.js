@@ -64,8 +64,11 @@ module.exports = {
         'border-light': '#e0f2fe',
       },
       fontFamily: {
-        sans: ['Quicksand_500Medium', 'Avenir Next', 'Avenir', 'System', 'sans-serif'],
-        heading: ['Quicksand_700Bold', 'Avenir Next', 'Avenir', 'System', 'sans-serif'],
+        sans: ['Quicksand_500Medium'],
+        medium: ['Quicksand_500Medium'],
+        semibold: ['Quicksand_600SemiBold'],
+        bold: ['Quicksand_700Bold'],
+        heading: ['Quicksand_700Bold'],
       },
       fontSize: {
         'heading-xl': ['32px', { lineHeight: '40px' }],

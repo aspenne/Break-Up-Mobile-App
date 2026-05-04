@@ -25,7 +25,8 @@
           "savePhotosPermission": "Break-Up a besoin d'enregistrer des photos dans votre bibliothèque.",
           "isAccessMediaLocationEnabled": true
         }
-      ]
+      ],
+      "expo-font"
     ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
