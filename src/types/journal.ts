@@ -68,23 +68,23 @@ export const JOURNAL_EMOTION_CONFIG: Record<
   hopeful: {
     label: "Plein(e) d'espoir",
     emoji: '🌤️',
-    bgClass: 'bg-sky-50',
-    borderClass: 'border-sky-200',
-    textClass: 'text-sky-500',
+    bgClass: 'bg-sage-50',
+    borderClass: 'border-sage-200',
+    textClass: 'text-sage-600',
   },
   growing: {
     label: 'En progression',
     emoji: '🌱',
     bgClass: 'bg-sage-100',
-    borderClass: 'border-sage-200',
+    borderClass: 'border-sage-300',
     textClass: 'text-sage-700',
   },
   thriving: {
     label: 'Épanoui(e)',
     emoji: '✨',
-    bgClass: 'bg-cream-200',
-    borderClass: 'border-cream-400',
-    textClass: 'text-cream-500',
+    bgClass: 'bg-sage-100',
+    borderClass: 'border-sage-400',
+    textClass: 'text-sage-900',
   },
 };
 
