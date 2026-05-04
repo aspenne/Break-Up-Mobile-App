@@ -155,7 +155,7 @@ export default function VerifyResetCodeScreen() {
             disabled={verifyCode.isPending}
           >
             {verifyCode.isPending ? (
-              <ActivityIndicator color="#542b94" />
+              <ActivityIndicator color="#0c4a6e" />
             ) : (
               <Text className="text-body-md font-semibold text-sky-900">Vérifier</Text>
             )}

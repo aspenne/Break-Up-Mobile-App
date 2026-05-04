@@ -77,7 +77,7 @@ export default function ForgotPasswordScreen() {
             <TextInput
               className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
               placeholder="votre@email.com"
-              placeholderTextColor="#9b93a8"
+              placeholderTextColor="#94a3b8"
               value={email}
               onChangeText={setEmail}
               keyboardType="email-address"
@@ -93,7 +93,7 @@ export default function ForgotPasswordScreen() {
             disabled={forgotPassword.isPending}
           >
             {forgotPassword.isPending ? (
-              <ActivityIndicator color="#542b94" />
+              <ActivityIndicator color="#0c4a6e" />
             ) : (
               <Text className="text-body-md font-semibold text-sky-900">
                 Envoyer le code

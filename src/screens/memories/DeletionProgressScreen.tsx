@@ -178,7 +178,7 @@ export default function DeletionProgressScreen() {
               style={{
                 fontSize: 12,
                 fontWeight: '600',
-                color: activeStage === stage.key ? '#7C3AED' : '#9b93a8',
+                color: activeStage === stage.key ? '#0369a1' : '#94a3b8',
                 marginTop: 2,
               }}
             >
@@ -187,7 +187,7 @@ export default function DeletionProgressScreen() {
             <Text
               style={{
                 fontSize: 11,
-                color: activeStage === stage.key ? '#7C3AED' : '#9b93a8',
+                color: activeStage === stage.key ? '#0369a1' : '#94a3b8',
               }}
             >
               {stage.count}

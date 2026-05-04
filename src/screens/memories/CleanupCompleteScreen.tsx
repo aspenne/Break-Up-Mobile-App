@@ -78,7 +78,7 @@ export default function CleanupCompleteScreen() {
         {/* Stats */}
         <View className="flex-row gap-6 mb-8">
           <View className="items-center">
-            <Text style={{ fontSize: 36, fontWeight: '700', color: '#7C3AED' }}>
+            <Text style={{ fontSize: 36, fontWeight: '700', color: '#0369a1' }}>
               {totalCount}
             </Text>
             <Caption className="text-sky-500">traitées</Caption>
@@ -92,7 +92,7 @@ export default function CleanupCompleteScreen() {
           </View>
           <View className="w-px bg-sky-200" />
           <View className="items-center">
-            <Text style={{ fontSize: 36, fontWeight: '700', color: '#5A8F72' }}>
+            <Text style={{ fontSize: 36, fontWeight: '700', color: '#467c46' }}>
               {keptCount}
             </Text>
             <Caption className="text-sky-500">conservées</Caption>

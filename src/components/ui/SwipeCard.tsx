@@ -167,14 +167,14 @@ export const SwipeCard = forwardRef<SwipeCardRef, SwipeCardProps>(
             <View
               style={{
                 borderWidth: 3,
-                borderColor: '#5A8F72',
+                borderColor: '#467c46',
                 borderRadius: 12,
                 paddingHorizontal: 16,
                 paddingVertical: 8,
                 backgroundColor: 'rgba(255,255,255,0.15)',
               }}>
               <Animated.Text
-                style={{ fontSize: 32, color: '#5A8F72', fontWeight: '700' }}>
+                style={{ fontSize: 32, color: '#467c46', fontWeight: '700' }}>
                 Garder
               </Animated.Text>
             </View>

@@ -106,7 +106,7 @@ export default function JournalComposeContentScreen() {
             onChangeText={setContent}
             multiline
             placeholder="Écris ce qui te traverse, sans filtre…"
-            placeholderTextColor="#9b93a8"
+            placeholderTextColor="#94a3b8"
             textAlignVertical="top"
             className="min-h-[220px] rounded-card border border-sky-200 bg-surface p-4 text-body-md text-text-primary"
           />

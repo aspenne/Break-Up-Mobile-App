@@ -195,7 +195,7 @@ export default function FaceSelectionScreen() {
             justifyContent: 'center',
             gap: 16,
           }}>
-          <ActivityIndicator size="large" color="#A78BFA" />
+          <ActivityIndicator size="large" color="#7dd3fc" />
           <Body className="text-sky-600">
             {loadProgress.total > 0
               ? `Chargement… ${loadProgress.loaded} / ${loadProgress.total}`
@@ -239,7 +239,7 @@ export default function FaceSelectionScreen() {
                 alignItems: 'center',
                 ...(active
                   ? {
-                      shadowColor: '#7C3AED',
+                      shadowColor: '#0369a1',
                       shadowOffset: { width: 0, height: 1 },
                       shadowOpacity: 0.1,
                       shadowRadius: 4,
@@ -384,7 +384,7 @@ export default function FaceSelectionScreen() {
                     borderRadius: 8,
                     overflow: 'hidden',
                     borderWidth: selected ? 3 : 0,
-                    borderColor: selected ? '#A78BFA' : 'transparent',
+                    borderColor: selected ? '#7dd3fc' : 'transparent',
                   }}>
                   <Image
                     source={{ uri: item.resolvedUri }}
@@ -400,7 +400,7 @@ export default function FaceSelectionScreen() {
                         width: 22,
                         height: 22,
                         borderRadius: 11,
-                        backgroundColor: '#7C3AED',
+                        backgroundColor: '#0369a1',
                         alignItems: 'center',
                         justifyContent: 'center',
                       }}>
@@ -416,7 +416,7 @@ export default function FaceSelectionScreen() {
           ListFooterComponent={
             isLoadingGallery ? (
               <View style={{ paddingVertical: 20, alignItems: 'center' }}>
-                <ActivityIndicator color="#A78BFA" />
+                <ActivityIndicator color="#7dd3fc" />
               </View>
             ) : null
           }

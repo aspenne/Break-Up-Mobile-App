@@ -63,11 +63,11 @@ export default function PhotoSwipeScreen() {
   if (total === 0) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FDF6EC' }}>
-        <Text style={{ color: '#7C3AED', fontSize: 18 }}>Aucune photo à traiter</Text>
+        <Text style={{ color: '#0369a1', fontSize: 18 }}>Aucune photo à traiter</Text>
         <Pressable
           onPress={() => navigation.goBack()}
           style={{ marginTop: 24, padding: 16 }}>
-          <Text style={{ color: '#A78BFA' }}>Retour</Text>
+          <Text style={{ color: '#7dd3fc' }}>Retour</Text>
         </Pressable>
       </View>
     );
@@ -88,7 +88,7 @@ export default function PhotoSwipeScreen() {
         }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View style={{ width: 64 }} />
-          <Text style={{ color: '#7C3AED', fontSize: 14, fontWeight: '600' }}>
+          <Text style={{ color: '#0369a1', fontSize: 14, fontWeight: '600' }}>
             {Math.min(currentIndex + 1, total)} / {total}
           </Text>
           <Pressable
@@ -104,7 +104,7 @@ export default function PhotoSwipeScreen() {
             </Text>
           </Pressable>
         </View>
-        <Text style={{ color: '#A78BFA', fontSize: 13, marginTop: 4, textAlign: 'center' }}>
+        <Text style={{ color: '#7dd3fc', fontSize: 13, marginTop: 4, textAlign: 'center' }}>
           Gauche pour supprimer · Droite pour garder
         </Text>
       </View>

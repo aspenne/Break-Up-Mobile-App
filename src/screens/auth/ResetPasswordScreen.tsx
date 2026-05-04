@@ -110,7 +110,7 @@ export default function ResetPasswordScreen() {
             <TextInput
               className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
               placeholder="Minimum 8 caractères"
-              placeholderTextColor="#9b93a8"
+              placeholderTextColor="#94a3b8"
               value={password}
               onChangeText={setPassword}
               secureTextEntry
@@ -124,7 +124,7 @@ export default function ResetPasswordScreen() {
             <TextInput
               className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
               placeholder="Retapez votre mot de passe"
-              placeholderTextColor="#9b93a8"
+              placeholderTextColor="#94a3b8"
               value={confirmPassword}
               onChangeText={setConfirmPassword}
               secureTextEntry
@@ -138,7 +138,7 @@ export default function ResetPasswordScreen() {
             disabled={resetPassword.isPending}
           >
             {resetPassword.isPending ? (
-              <ActivityIndicator color="#542b94" />
+              <ActivityIndicator color="#0c4a6e" />
             ) : (
               <Text className="text-body-md font-semibold text-sky-900">
                 Réinitialiser

@@ -5,8 +5,8 @@ module.exports = {
   safelist: [
     // sky (couleur principale + blog + chat)
     'bg-sky-50', 'bg-sky-100', 'bg-sky-300', 'border-sky-100', 'border-sky-200', 'text-sky-400', 'text-sky-500', 'text-sky-600', 'text-sky-700',
-    // sage (journal)
-    'bg-sage-50', 'bg-sage-100', 'bg-sage-300', 'border-sage-200', 'text-sage-400', 'text-sage-600', 'text-sage-700', 'text-sage-900',
+    // sage (positif / progression)
+    'bg-sage-50', 'bg-sage-100', 'bg-sage-300', 'border-sage-200', 'border-sage-300', 'border-sage-400', 'text-sage-400', 'text-sage-600', 'text-sage-700', 'text-sage-800', 'text-sage-900',
     // rose (souvenirs)
     'bg-rose-50', 'bg-rose-100', 'border-rose-100', 'border-rose-200', 'text-rose-400',
   ],
@@ -62,6 +62,10 @@ module.exports = {
         'text-muted': '#94a3b8',
         border: '#bae6fd',
         'border-light': '#e0f2fe',
+      },
+      fontFamily: {
+        sans: ['Quicksand_500Medium', 'Avenir Next', 'Avenir', 'System', 'sans-serif'],
+        heading: ['Quicksand_700Bold', 'Avenir Next', 'Avenir', 'System', 'sans-serif'],
       },
       fontSize: {
         'heading-xl': ['32px', { lineHeight: '40px' }],
