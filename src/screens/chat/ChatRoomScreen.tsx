@@ -135,6 +135,11 @@ export default function ChatRoomScreen() {
         {/* Input bar */}
         <View className="flex-row items-end border-t border-sky-100 bg-surface px-4 py-3">
           <View className="mr-3 flex-1">
+            {isAnonymous && (
+              <Caption className="ml-2 mb-1 text-sky-400">
+                Mode anonyme activé
+              </Caption>
+            )}
             <TextInput
               className="max-h-24 rounded-2xl border border-sky-200 bg-background px-4 py-2.5 text-body-md text-text-primary"
               placeholder="Votre message..."
@@ -144,16 +149,11 @@ export default function ChatRoomScreen() {
               multiline
               returnKeyType="default"
             />
-            {isAnonymous && (
-              <Caption className="ml-2 mt-1 text-sky-400">
-                Mode anonyme activé
-              </Caption>
-            )}
           </View>
           <TouchableOpacity
             onPress={handleSend}
             disabled={!text.trim() || sendMessage.isPending}
-            className={`mb-1 items-center justify-center rounded-full p-3 ${
+            className={`items-start justify-top rounded-full p-3 ${
               text.trim() ? 'bg-sky-300' : 'bg-sky-100'
             }`}
           >

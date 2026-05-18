@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Pressable, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
-import { Container, Heading, Body, Caption, DailyQuoteModal, DailyMoodPromptModal, Logo, ProfileButton, SoothingImage } from '@/components';
+import { Container, Heading, Body, Caption, DailyQuoteModal, DailyMoodPromptModal, ProfileButton, SoothingImage } from '@/components';
 import { useMe } from '@/hooks/useAuth';
 import { useJournalEntries } from '@/hooks/useJournal';
 import { useArticles } from '@/hooks/useBlog';
@@ -73,7 +73,6 @@ export default function HomeScreen() {
 
         {/* Header */}
         <View className="flex-row items-center pb-6 pt-12">
-          <Logo size="sm" />
           <View className="ml-3 flex-1">
             <Heading className="mb-1 text-heading-lg" numberOfLines={2} adjustsFontSizeToFit>
               Bonjour {user?.pseudo ?? ''} {user?.avatarEmoji ?? ''}
@@ -86,16 +85,14 @@ export default function HomeScreen() {
         {/* Mood du jour */}
         <Pressable
           onPress={() => navigation.navigate('JournalTab')}
-          className={`mb-4 rounded-card border p-5 shadow-soft ${
-            todayEntry ? 'border-sage-300 bg-sage-50' : 'border-sky-300 bg-sky-50'
-          }`}
+          className={`mb-4 rounded-card border p-5 shadow-soft border-sky-300 bg-sky-50`}
         >
           <View className="flex-row items-center">
             <Text className="mr-3 text-4xl">
               {todayEntry ? JOURNAL_EMOTION_CONFIG[todayEntry.emotion].emoji : '🌤️'}
             </Text>
             <View className="flex-1">
-              <Caption className={todayEntry ? 'text-sage-700' : 'text-sky-700'}>
+              <Caption className='text-sky-700'>
                 {todayEntry ? "Mood du jour" : "Comment te sens-tu aujourd'hui ?"}
               </Caption>
               <Body className="font-semibold" numberOfLines={2}>
