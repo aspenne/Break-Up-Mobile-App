@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Pressable, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
-import { Container, Heading, Body, Caption, Card, DailyQuoteModal, Logo, ProfileButton } from '@/components';
+import { Container, Heading, Body, Caption, Card, DailyQuoteModal, DailyMoodPromptModal, Logo, ProfileButton } from '@/components';
 import { useMe } from '@/hooks/useAuth';
 import { useJournalEntries } from '@/hooks/useJournal';
 import { useArticles } from '@/hooks/useBlog';
@@ -68,6 +68,7 @@ export default function HomeScreen() {
   return (
     <Container>
       <DailyQuoteModal />
+      <DailyMoodPromptModal />
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 32 }}>
 
         {/* Header */}
