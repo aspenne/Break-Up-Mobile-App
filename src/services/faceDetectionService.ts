@@ -125,17 +125,19 @@ export function loadPhotosFromAlbums(
 
 /**
  * Loads all photos from a persisted MemoriesConfig (albums + individual photos).
- * Deduplicates by asset ID. Returns a cancel() function.
+ * Deduplicates by asset ID. Optionally skips a set of asset IDs already processed
+ * in previous sessions. Returns a cancel() function.
  */
 export function loadPhotosFromConfig(
   config: MemoriesConfig,
-  callbacks: LoadPhotosCallbacks
+  callbacks: LoadPhotosCallbacks,
+  skipAssetIds?: Set<string>
 ): () => void {
   let cancelled = false;
 
   const run = async () => {
     try {
-      const seen = new Set<string>();
+      const seen = new Set<string>(skipAssetIds ?? []);
       const allPhotos: ScannedPhoto[] = [];
 
       // 1. Load photos from selected albums

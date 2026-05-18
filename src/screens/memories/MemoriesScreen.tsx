@@ -10,6 +10,9 @@ import {
   ProfileButton,
 } from '@/components';
 import { useMemories } from '@/hooks/useMemories';
+import apiClient from '@/api/client';
+import type { Memory } from '@/types';
+import type { PaginatedResponse } from '@/api/types';
 import type { MemoriesStackParamList } from '@/navigation/types';
 import { loadPhotosFromConfig } from '@/services/faceDetectionService';
 import { useMemoryStore } from '@/stores/useMemoryStore';
@@ -47,25 +50,46 @@ export default function MemoriesScreen() {
     }, [refetch])
   );
 
-  const handleStartCleanup = useCallback(() => {
+  const handleStartCleanup = useCallback(async () => {
     store.resetCleanupSession();
 
     if (memoriesConfig) {
       // Config exists: load directly from saved sources
       setIsLoadingPhotos(true);
-      const cancel = loadPhotosFromConfig(memoriesConfig, {
-        onProgress: (loaded, total) => setLoadProgress({ loaded, total }),
-        onComplete: (photos) => {
-          store.setTotalInSources(photos.length);
-          store.setSwipeQueue(photos);
-          setIsLoadingPhotos(false);
-          navigation.navigate('PhotoSwipe');
+
+      // Build skip set from already-processed memories so they don't reappear
+      let skip: Set<string> | undefined;
+      try {
+        const { data: page } = await apiClient.get<PaginatedResponse<Memory>>(
+          '/api/memories',
+          { params: { page: 1, limit: 10000 } }
+        );
+        skip = new Set(
+          (page.data ?? [])
+            .map((m) => m.assetId)
+            .filter((id): id is string => !!id)
+        );
+      } catch {
+        // best-effort: continue without filter
+      }
+
+      const cancel = loadPhotosFromConfig(
+        memoriesConfig,
+        {
+          onProgress: (loaded, total) => setLoadProgress({ loaded, total }),
+          onComplete: (photos) => {
+            store.setTotalInSources(photos.length);
+            store.setSwipeQueue(photos);
+            setIsLoadingPhotos(false);
+            navigation.navigate('PhotoSwipe');
+          },
+          onError: (error) => {
+            store.setCleanupError(error);
+            setIsLoadingPhotos(false);
+          },
         },
-        onError: (error) => {
-          store.setCleanupError(error);
-          setIsLoadingPhotos(false);
-        },
-      });
+        skip
+      );
       cancelRef.current = cancel;
     } else {
       // No config: go to selection screen

@@ -21,6 +21,7 @@ export function useCreateMemory() {
 
   return useMutation({
     mutationFn: async (payload: {
+      assetId?: string;
       uri: string;
       thumbnailUri?: string;
       dateTaken?: string;

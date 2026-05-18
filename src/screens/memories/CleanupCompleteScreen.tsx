@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Text, View } from 'react-native';
+import * as MediaLibrary from 'expo-media-library';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import type {
   StackNavigationProp,
@@ -21,48 +22,85 @@ export default function CleanupCompleteScreen() {
   const store = useMemoryStore();
   const createMemory = useCreateMemory();
   const committed = useRef(false);
+  const [actuallyDeleted, setActuallyDeleted] = useState<number | null>(null);
 
   useEffect(() => {
     if (committed.current) return;
     committed.current = true;
 
     const results = store.cleanup.swipeResults;
+    const toDelete = results.filter((r) => r.decision === 'delete');
+    const toKeep = results.filter((r) => r.decision === 'keep');
 
     const commit = async () => {
-      const deletedResults = results.filter((r) => r.decision === 'delete');
-
-      // 1. Update local counters immediately (no backend dependency)
+      // 1. Update local counters immediately
       store.incrementTotalSwiped(results.length);
-      store.incrementTotalDeleted(deletedResults.length);
+      store.incrementTotalDeleted(toDelete.length);
 
-      // 2. Sync to backend — "delete" swipes become "hidden" (not deleted from device)
-      //    "keep" swipes become "identified" (tracked but kept)
-      for (const result of results) {
+      // 2. Really delete the swiped-left photos from the device.
+      //    deleteAssetsAsync shows a confirmation prompt (iOS/Android 11+)
+      //    and returns true if the user confirmed. Bulk-delete in one call.
+      let deletionConfirmed = false;
+      if (toDelete.length > 0) {
+        try {
+          deletionConfirmed = await MediaLibrary.deleteAssetsAsync(
+            toDelete.map((r) => r.assetId)
+          );
+        } catch {
+          deletionConfirmed = false;
+        }
+      }
+      setActuallyDeleted(deletionConfirmed ? toDelete.length : 0);
+
+      // 3. Sync to backend so they don't reappear next session.
+      //    - delete results → stage 'deleted' if confirmed, else 'hidden'
+      //    - keep results   → stage 'identified'
+      for (const r of toDelete) {
         try {
           await createMemory.mutateAsync({
-            uri: result.uri,
-            dateTaken: result.decidedAt,
-            stage: result.decision === 'delete' ? 'hidden' : 'identified',
+            assetId: r.assetId,
+            uri: r.uri,
+            dateTaken: r.decidedAt,
+            stage: deletionConfirmed ? 'deleted' : 'hidden',
           });
         } catch {
-          // best-effort — backend sync is optional
+          // best-effort
+        }
+      }
+      for (const r of toKeep) {
+        try {
+          await createMemory.mutateAsync({
+            assetId: r.assetId,
+            uri: r.uri,
+            dateTaken: r.decidedAt,
+            stage: 'identified',
+          });
+        } catch {
+          // best-effort
         }
       }
     };
 
     commit();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const totalCount = deletedCount + keptCount;
 
   const getSupportMessage = () => {
     if (deletedCount === 0) {
-      return 'Garder des souvenirs, c\'est aussi avancer à son rythme. Tu feras le tri quand tu te sentiras prêt(e).';
+      return "Garder des souvenirs, c'est aussi avancer à son rythme. Tu feras le tri quand tu te sentiras prêt(e).";
+    }
+    if (actuallyDeleted === null) {
+      return 'Suppression en cours…';
+    }
+    if (actuallyDeleted === 0 && deletedCount > 0) {
+      return `Tu as marqué ${deletedCount} souvenir${deletedCount > 1 ? 's' : ''} à supprimer, mais la suppression a été annulée. Ils sont masqués pour ne pas réapparaître la prochaine fois.`;
     }
     if (keptCount === 0) {
-      return 'Bravo pour ce grand pas. Les photos sont masquées pour l\'instant — tu pourras les archiver ou les supprimer définitivement quand tu te sentiras prêt(e).';
+      return `Bravo pour ce grand pas. ${actuallyDeleted} souvenir${actuallyDeleted > 1 ? 's' : ''} supprimé${actuallyDeleted > 1 ? 's' : ''} de ton appareil.`;
     }
-    return `Tu as fait le tri avec courage. ${deletedCount} souvenir${deletedCount > 1 ? 's' : ''} masqué${deletedCount > 1 ? 's' : ''}, ${keptCount} conservé${keptCount > 1 ? 's' : ''}. Tu avances à ton rythme.`;
+    return `Tu as fait le tri avec courage. ${actuallyDeleted} souvenir${actuallyDeleted > 1 ? 's' : ''} supprimé${actuallyDeleted > 1 ? 's' : ''}, ${keptCount} conservé${keptCount > 1 ? 's' : ''}. Tu avances à ton rythme.`;
   };
 
   return (
@@ -88,7 +126,7 @@ export default function CleanupCompleteScreen() {
             <Text style={{ fontSize: 36, fontWeight: '700', color: '#EF4444' }}>
               {deletedCount}
             </Text>
-            <Caption className="text-sky-500">mises de côté</Caption>
+            <Caption className="text-sky-500">supprimées</Caption>
           </View>
           <View className="w-px bg-sky-200" />
           <View className="items-center">
