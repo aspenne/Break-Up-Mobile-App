@@ -11,6 +11,7 @@ import {
   LoadingSpinner,
   EmptyState,
   ProfileButton,
+  SoothingImage,
 } from '@/components';
 import { useJournalEntries } from '@/hooks/useJournal';
 import { colors } from '@/theme';
@@ -113,11 +114,14 @@ export default function JournalScreen() {
               </Caption>
             </View>
           ) : (
-            <EmptyState
-              icon="edit-3"
-              title="Aucune entrée"
-              description="Écris tes pensées et suis ton évolution émotionnelle jour après jour."
-            />
+            <View className="px-4">
+              <SoothingImage height={180} style={{ marginBottom: 16 }} />
+              <EmptyState
+                icon="edit-3"
+                title="Aucune entrée"
+                description="Écris tes pensées et suis ton évolution émotionnelle jour après jour."
+              />
+            </View>
           )
         }
       />

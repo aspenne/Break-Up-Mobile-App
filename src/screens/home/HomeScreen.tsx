@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Pressable, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
-import { Container, Heading, Body, Caption, Card, DailyQuoteModal, DailyMoodPromptModal, Logo, ProfileButton } from '@/components';
+import { Container, Heading, Body, Caption, DailyQuoteModal, DailyMoodPromptModal, Logo, ProfileButton, SoothingImage } from '@/components';
 import { useMe } from '@/hooks/useAuth';
 import { useJournalEntries } from '@/hooks/useJournal';
 import { useArticles } from '@/hooks/useBlog';
@@ -167,13 +167,20 @@ export default function HomeScreen() {
           </Pressable>
         )}
 
-        {/* Citation apaisante */}
-        <Card className="items-center bg-cream-100 py-6">
-          <Text className="text-5xl">🌅</Text>
-          <Body className="mt-3 text-center font-medium text-sky-700">
-            « Le calme revient toujours,{'\n'}comme la vague qui s'apaise. »
+        {/* Citation apaisante avec image de fond */}
+        <SoothingImage height={180}>
+          <Body
+            className="text-center font-semibold"
+            style={{
+              color: '#fff',
+              textShadowColor: 'rgba(0,0,0,0.45)',
+              textShadowOffset: { width: 0, height: 1 },
+              textShadowRadius: 3,
+            }}
+          >
+            « Le calme revient toujours,{'\n'}comme la vague qui s&apos;apaise. »
           </Body>
-        </Card>
+        </SoothingImage>
 
       </ScrollView>
     </Container>

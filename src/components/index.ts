@@ -11,3 +11,4 @@ export { DailyQuoteModal } from './ui/DailyQuoteModal';
 export { DailyMoodPromptModal } from './ui/DailyMoodPromptModal';
 export { Logo } from './ui/Logo';
 export { ProfileButton } from './ui/ProfileButton';
+export { SoothingImage } from './ui/SoothingImage';

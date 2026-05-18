@@ -1,7 +1,7 @@
 import { View, Text, Alert, TouchableOpacity, ScrollView, Pressable } from 'react-native';
 import { useNavigation, type NavigationProp } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
-import { Container, Heading, Body, Button, Card, Caption } from '@/components';
+import { Container, Heading, Body, Button, Card, Caption, SoothingImage } from '@/components';
 import { useMe, useLogout } from '@/hooks/useAuth';
 import { useJournalEntries } from '@/hooks/useJournal';
 import { daysSince } from '@/utils/date';
@@ -79,12 +79,19 @@ export default function ProfileScreen() {
           </View>
         </View>
 
-        <Card className="mb-6 items-center bg-sky-50 py-6">
-          <Text className="text-5xl">🌅</Text>
-          <Body className="mt-3 text-center font-medium text-sky-700">
+        <SoothingImage height={170} style={{ marginBottom: 24 }}>
+          <Body
+            className="text-center font-semibold"
+            style={{
+              color: '#fff',
+              textShadowColor: 'rgba(0,0,0,0.45)',
+              textShadowOffset: { width: 0, height: 1 },
+              textShadowRadius: 3,
+            }}
+          >
             « Chaque petit pas compte.{'\n'}Tu es exactement là où tu dois être. »
           </Body>
-        </Card>
+        </SoothingImage>
 
         <TouchableOpacity
           onPress={() => navigation.navigate('Charter')}
