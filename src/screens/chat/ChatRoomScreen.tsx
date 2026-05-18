@@ -79,7 +79,7 @@ export default function ChatRoomScreen() {
       {
         roomId,
         content: trimmed,
-        senderName: isAnonymous ? 'Anonyme' : user?.firstName,
+        senderName: isAnonymous ? 'Anonyme' : user?.pseudo,
       },
       { onSuccess: () => setText('') }
     );

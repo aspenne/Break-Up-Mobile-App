@@ -20,8 +20,7 @@ type AuthParamList = {
 
 export default function RegisterScreen() {
   const navigation = useNavigation<NavigationProp<AuthParamList>>();
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [pseudo, setPseudo] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -32,8 +31,13 @@ export default function RegisterScreen() {
   const handleRegister = () => {
     setError('');
 
-    if (!firstName.trim() || !lastName.trim() || !email.trim() || !password || !confirmPassword) {
+    if (!pseudo.trim() || !email.trim() || !password || !confirmPassword) {
       setError('Veuillez remplir tous les champs.');
+      return;
+    }
+
+    if (pseudo.trim().length < 2) {
+      setError('Le pseudo doit contenir au moins 2 caractères.');
       return;
     }
 
@@ -49,8 +53,7 @@ export default function RegisterScreen() {
 
     register.mutate(
       {
-        firstName: firstName.trim(),
-        lastName: lastName.trim(),
+        pseudo: pseudo.trim(),
         email: email.trim(),
         password,
       },
@@ -85,29 +88,18 @@ export default function RegisterScreen() {
             </View>
           ) : null}
 
-          <View className="mb-4 flex-row gap-3">
-            <View className="flex-1">
-              <Text className="mb-1 text-body-sm font-medium text-text-secondary">Prénom</Text>
-              <TextInput
-                className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
-                placeholder="Prénom"
-                placeholderTextColor="#94a3b8"
-                value={firstName}
-                onChangeText={setFirstName}
-                autoCapitalize="words"
-              />
-            </View>
-            <View className="flex-1">
-              <Text className="mb-1 text-body-sm font-medium text-text-secondary">Nom</Text>
-              <TextInput
-                className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
-                placeholder="Nom"
-                placeholderTextColor="#94a3b8"
-                value={lastName}
-                onChangeText={setLastName}
-                autoCapitalize="words"
-              />
-            </View>
+          <View className="mb-4">
+            <Text className="mb-1 text-body-sm font-medium text-text-secondary">Pseudo</Text>
+            <TextInput
+              className="rounded-input border border-sky-200 bg-surface px-4 py-3.5 text-body-md text-text-primary"
+              placeholder="Comment veux-tu qu'on t'appelle ?"
+              placeholderTextColor="#94a3b8"
+              value={pseudo}
+              onChangeText={setPseudo}
+              autoCapitalize="none"
+              autoCorrect={false}
+              maxLength={50}
+            />
           </View>
 
           <View className="mb-4">

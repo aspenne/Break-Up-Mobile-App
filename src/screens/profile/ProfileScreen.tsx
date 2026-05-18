@@ -50,7 +50,7 @@ export default function ProfileScreen() {
         <Card className="mb-6 items-center py-8">
           <Text className="mb-3 text-6xl">{user?.avatarEmoji ?? '😊'}</Text>
           <Heading className="mb-1">
-            {user?.firstName ?? ''} {user?.lastName ?? ''}
+            {user?.pseudo ?? ''}
           </Heading>
           <Body>{user?.email ?? ''}</Body>
         </Card>

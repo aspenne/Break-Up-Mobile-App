@@ -50,8 +50,7 @@ export function useRegister() {
     mutationFn: async (payload: {
       email: string;
       password: string;
-      firstName: string;
-      lastName: string;
+      pseudo: string;
       avatarEmoji?: string;
     }) => {
       const { data } = await apiClient.post<AuthResponse>(
@@ -111,8 +110,7 @@ export function useUpdateProfile() {
 
   return useMutation({
     mutationFn: async (payload: {
-      firstName?: string;
-      lastName?: string;
+      pseudo?: string;
       avatarEmoji?: string;
       breakupDate?: string;
     }) => {

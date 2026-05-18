@@ -75,7 +75,7 @@ export default function HomeScreen() {
           <Logo size="sm" />
           <View className="ml-3 flex-1">
             <Heading className="mb-1 text-heading-lg" numberOfLines={2} adjustsFontSizeToFit>
-              Bonjour {user?.firstName ?? ''} {user?.avatarEmoji ?? ''}
+              Bonjour {user?.pseudo ?? ''} {user?.avatarEmoji ?? ''}
             </Heading>
             <Body className="text-text-muted">Chaque jour est un pas en avant.</Body>
           </View>
