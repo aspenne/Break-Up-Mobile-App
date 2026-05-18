@@ -3,12 +3,12 @@ import { useCallback, useState } from 'react';
 import { ImageBackground, View, type ImageSourcePropType, type ViewStyle } from 'react-native';
 
 const BACKGROUNDS: ImageSourcePropType[] = [
-  require('../../../assets/backgroud/bg-1.jpg'),
-  require('../../../assets/backgroud/bg-2.jpg'),
-  require('../../../assets/backgroud/bg-3.jpg'),
-  require('../../../assets/backgroud/bg-4.jpg'),
-  require('../../../assets/backgroud/bg-5.jpg'),
-  require('../../../assets/backgroud/bg-6.jpg'),
+  require('../../../assets/background/bg-1.jpg'),
+  require('../../../assets/background/bg-2.jpg'),
+  require('../../../assets/background/bg-3.jpg'),
+  require('../../../assets/background/bg-4.jpg'),
+  require('../../../assets/background/bg-5.jpg'),
+  require('../../../assets/background/bg-6.jpg'),
 ];
 
 function pickRandom(): ImageSourcePropType {
@@ -24,7 +24,7 @@ interface SoothingImageProps {
 }
 
 /**
- * Banner image picked at random from assets/backgroud/, with an optional
+ * Banner image picked at random from assets/background/, with an optional
  * dark overlay for readability. Re-rolls a new image every time the
  * containing screen is focused.
  */
