@@ -1,6 +1,7 @@
 import * as MediaLibrary from 'expo-media-library';
 import type { PhotoAlbum, ScannedPhoto, MemoriesConfig } from '@/types/cleanup';
 
+// @deprcated: use requestMediaPermission + loadPhotosFromConfig instead for better progress tracking and cancellation support
 export async function requestMediaPermission(): Promise<boolean> {
   const { status } = await MediaLibrary.requestPermissionsAsync();
   return status === MediaLibrary.PermissionStatus.GRANTED;
