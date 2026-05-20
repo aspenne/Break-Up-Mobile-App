@@ -1,6 +1,6 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { FlatList, TouchableOpacity, View, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import {
   Container,
@@ -23,7 +23,15 @@ type Nav = StackNavigationProp<JournalStackParamList, 'JournalMain'>;
 
 export default function JournalScreen() {
   const navigation = useNavigation<Nav>();
-  const { data, isLoading, isError } = useJournalEntries();
+  const { data, isLoading, isError, refetch } = useJournalEntries();
+
+  // Refresh the entries every time the screen comes back into focus so
+  // we never display stale (or empty) data when re-entering the tab.
+  useFocusEffect(
+    useCallback(() => {
+      refetch();
+    }, [refetch])
+  );
 
   const entries = data?.data ?? [];
   const hasEntryToday = useMemo(
