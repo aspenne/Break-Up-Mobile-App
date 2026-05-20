@@ -3,7 +3,6 @@ import MemoriesScreen from '@/screens/memories/MemoriesScreen';
 import FaceSelectionScreen from '@/screens/memories/FaceSelectionScreen';
 import PhotoSwipeScreen from '@/screens/memories/PhotoSwipeScreen';
 import CleanupCompleteScreen from '@/screens/memories/CleanupCompleteScreen';
-import DeletionProgressScreen from '@/screens/memories/DeletionProgressScreen';
 
 const MemoriesStack = createStackNavigator({
   screens: {
@@ -31,12 +30,6 @@ const MemoriesStack = createStackNavigator({
       options: {
         headerShown: false,
         gestureEnabled: false,
-      },
-    },
-    DeletionProgress: {
-      screen: DeletionProgressScreen,
-      options: {
-        headerShown: false,
       },
     },
   },

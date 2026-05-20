@@ -8,7 +8,6 @@ export type MemoriesStackParamList = {
   PhotoSwipe: undefined;
   CleanupComplete: { deletedCount: number; keptCount: number };
   MemoryDetail: { memoryId: number };
-  DeletionProgress: undefined;
 };
 
 export type ChatStackParamList = {
