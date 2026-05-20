@@ -21,6 +21,7 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import { useCallback, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, Pressable, Text, View } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
 type Nav = StackNavigationProp<MemoriesStackParamList>;
 
@@ -141,13 +142,35 @@ export default function MemoriesScreen() {
         )}
       </Card>
 
-      {/* CTA */}
-      <Button
-        title="Nettoyer mes souvenirs"
-        onPress={handleStartCleanup}
-        className="mb-3"
-        disabled={isLoadingPhotos}
-      />
+      {/* CTA + bouton "ajouter des sources" */}
+      <View className="mb-3 flex-row items-center gap-2">
+        <View style={{ flex: 1 }}>
+          <Button
+            title="Nettoyer mes souvenirs"
+            onPress={handleStartCleanup}
+            disabled={isLoadingPhotos}
+          />
+        </View>
+        {memoriesConfig && (
+          <Pressable
+            onPress={() => navigation.navigate('FaceSelection', { editMode: true })}
+            accessibilityLabel="Ajouter des albums ou photos"
+            hitSlop={8}
+            style={{
+              width: 52,
+              height: 52,
+              borderRadius: 26,
+              borderWidth: 1.5,
+              borderColor: colors.sky[300],
+              backgroundColor: colors.sky[50],
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Feather name="plus" size={22} color={colors.sky[700]} />
+          </Pressable>
+        )}
+      </View>
 
       {memories.length > 0 && (
         <Pressable
