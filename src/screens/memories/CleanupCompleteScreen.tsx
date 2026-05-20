@@ -33,11 +33,11 @@ export default function CleanupCompleteScreen() {
     const toKeep = results.filter((r) => r.decision === 'keep');
 
     const commit = async () => {
-      // 1. Update local counters immediately
-      store.incrementTotalSwiped(results.length);
-      store.incrementTotalDeleted(toDelete.length);
+      // Counters are now derived from the backend via /api/memories/stats,
+      // so we don't track them locally — the createMemory calls below
+      // will populate the source of truth.
 
-      // 2. Really delete the swiped-left photos from the device.
+      // 1. Really delete the swiped-left photos from the device.
       //    deleteAssetsAsync shows a confirmation prompt (iOS/Android 11+)
       //    and returns true if the user confirmed. Bulk-delete in one call.
       let deletionConfirmed = false;
@@ -52,7 +52,7 @@ export default function CleanupCompleteScreen() {
       }
       setActuallyDeleted(deletionConfirmed ? toDelete.length : 0);
 
-      // 3. Sync to backend so they don't reappear next session.
+      // 2. Sync to backend so they don't reappear next session.
       //    - delete results → stage 'deleted' if confirmed, else 'hidden'
       //    - keep results   → stage 'identified'
       for (const r of toDelete) {

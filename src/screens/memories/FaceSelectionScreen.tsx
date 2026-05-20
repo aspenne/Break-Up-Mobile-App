@@ -155,7 +155,6 @@ export default function FaceSelectionScreen() {
     const cancel = loadPhotosFromConfig(config, {
       onProgress: (loaded, total) => setLoadProgress({ loaded, total }),
       onComplete: (photos) => {
-        store.setTotalInSources(photos.length);
         store.setSwipeQueue(photos);
         navigation.navigate('PhotoSwipe');
       },

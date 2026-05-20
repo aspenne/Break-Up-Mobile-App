@@ -9,7 +9,7 @@ import {
   LoadingSpinner,
   ProfileButton,
 } from '@/components';
-import { useMemories } from '@/hooks/useMemories';
+import { useMemories, useMemoryStats } from '@/hooks/useMemories';
 import apiClient from '@/api/client';
 import type { Memory } from '@/types';
 import type { PaginatedResponse } from '@/api/types';
@@ -28,27 +28,26 @@ type Nav = StackNavigationProp<MemoriesStackParamList>;
 export default function MemoriesScreen() {
   const navigation = useNavigation<Nav>();
   const { data, isLoading, isError, refetch } = useMemories();
+  const { data: stats, refetch: refetchStats } = useMemoryStats();
   const store = useMemoryStore();
   const cancelRef = useRef<(() => void) | null>(null);
 
   const [isLoadingPhotos, setIsLoadingPhotos] = useState(false);
   const [loadProgress, setLoadProgress] = useState({ loaded: 0, total: 0 });
 
-  const { totalInSources, totalSwiped, totalDeleted, memoriesConfig, cleanup } = store;
+  const { memoriesConfig } = store;
 
-  // Calculer les stats EN TEMPS RÉEL en combinant sessions complétées + session actuelle
-  const currentSessionSwiped = cleanup.swipeResults.length;
-  const currentSessionDeleted = cleanup.swipeResults.filter((r) => r.decision === 'delete').length;
-  const totalSwipedIncludingCurrent = totalSwiped + currentSessionSwiped;
-  const totalDeletedIncludingCurrent = totalDeleted + currentSessionDeleted;
-  const totalKeptIncludingCurrent = totalSwipedIncludingCurrent - totalDeletedIncludingCurrent;
-  const progressPercent = totalInSources > 0 ? Math.round((totalSwipedIncludingCurrent / totalInSources) * 100) : 0;
+  // Stats agrégées côté backend — toujours à jour
+  const deletedCount = stats?.deleted ?? 0;
+  const keptCount = stats?.kept ?? 0;
+  const sortedCount = stats?.sorted ?? 0;
 
   // Refetch les données à chaque retour sur cet écran
   useFocusEffect(
     useCallback(() => {
       refetch();
-    }, [refetch])
+      refetchStats();
+    }, [refetch, refetchStats])
   );
 
   const handleStartCleanup = useCallback(async () => {
@@ -79,7 +78,6 @@ export default function MemoriesScreen() {
         {
           onProgress: (loaded, total) => setLoadProgress({ loaded, total }),
           onComplete: (photos) => {
-            store.setTotalInSources(photos.length);
             store.setSwipeQueue(photos);
             setIsLoadingPhotos(false);
             navigation.navigate('PhotoSwipe');
@@ -107,39 +105,30 @@ export default function MemoriesScreen() {
         <ProfileButton />
       </View>
 
-      {/* Progress card */}
+      {/* Compteurs agrégés depuis la base de données */}
       <Card className="mb-4 border border-sky-200 bg-sky-50">
-        <View className="mb-3 flex-row justify-between">
+        <View className="flex-row justify-between">
           <View className="items-center flex-1">
             <Text style={{ fontSize: 24, fontWeight: '700', color: '#EF4444' }}>
-              {totalDeletedIncludingCurrent}
+              {deletedCount}
             </Text>
             <Caption className="text-sky-400 text-center">supprimées</Caption>
           </View>
           <View className="w-px bg-sky-100" />
           <View className="items-center flex-1">
             <Text style={{ fontSize: 24, fontWeight: '700', color: '#467c46' }}>
-              {totalKeptIncludingCurrent}
+              {keptCount}
             </Text>
             <Caption className="text-sky-400 text-center">conservées</Caption>
           </View>
           <View className="w-px bg-sky-100" />
           <View className="items-center flex-1">
             <Text style={{ fontSize: 24, fontWeight: '700', color: '#0284c7' }}>
-              {progressPercent}%
+              {sortedCount}
             </Text>
             <Caption className="text-sky-400 text-center">triées</Caption>
           </View>
         </View>
-
-        {totalInSources > 0 && (
-          <View className="mt-1 h-2 overflow-hidden rounded-full bg-sky-100">
-            <View
-              className="h-full rounded-full bg-sky-300"
-              style={{ width: `${progressPercent}%` }}
-            />
-          </View>
-        )}
       </Card>
 
       {/* CTA + bouton "ajouter des sources" */}
@@ -172,24 +161,6 @@ export default function MemoriesScreen() {
         )}
       </View>
 
-      {memories.length > 0 && (
-        <Pressable
-          onPress={() => navigation.navigate('DeletionProgress')}
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: '#ffe0e0',
-            borderRadius: 28,
-            paddingVertical: 14,
-            paddingHorizontal: 20,
-            marginBottom: 24,
-          }}>
-          <Text style={{ fontSize: 14, fontWeight: '600', color: '#ff7070' }}>
-            Voir mes photos triées ({memories.length})
-          </Text>
-        </Pressable>
-      )}
     </View>
   );
 

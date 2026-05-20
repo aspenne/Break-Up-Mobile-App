@@ -4,6 +4,11 @@ import { zustandStorage } from '@/utils/storage';
 import type { DeletionStage } from '@/types/memory';
 import type { ScanStatus, ScannedPhoto, SwipeResult, MemoriesConfig } from '@/types/cleanup';
 
+// Note: les compteurs (deleted / kept / sorted) sont désormais dérivés de la
+// base de données via GET /api/memories/stats (hook `useMemoryStats`).
+// Le store ne garde plus que l'état volatile de la session courante de
+// cleanup et la config persistée des sources.
+
 interface CleanupSession {
   status: ScanStatus;
   scannedCount: number;
@@ -16,9 +21,6 @@ interface CleanupSession {
 
 interface MemoryState {
   deletionProgress: Record<number, DeletionStage>;
-  totalInSources: number;
-  totalSwiped: number;
-  totalDeleted: number;
   cleanup: CleanupSession;
   memoriesConfig: MemoriesConfig | null;
 
@@ -32,9 +34,6 @@ interface MemoryState {
   setSwipeQueue: (photos: ScannedPhoto[]) => void;
   recordSwipe: (result: SwipeResult) => void;
   resetCleanupSession: () => void;
-  setTotalInSources: (count: number) => void;
-  incrementTotalSwiped: (count?: number) => void;
-  incrementTotalDeleted: (count?: number) => void;
   setCleanupError: (error: string) => void;
   setMemoriesConfig: (config: MemoriesConfig) => void;
   clearMemoriesConfig: () => void;
@@ -54,9 +53,6 @@ export const useMemoryStore = create<MemoryState>()(
   persist(
     (set, get) => ({
       deletionProgress: {},
-      totalInSources: 0,
-      totalSwiped: 0,
-      totalDeleted: 0,
       cleanup: defaultCleanup,
       memoriesConfig: null,
 
@@ -65,8 +61,7 @@ export const useMemoryStore = create<MemoryState>()(
           deletionProgress: { ...state.deletionProgress, [memoryId]: stage },
         })),
 
-      resetProgress: () =>
-        set({ deletionProgress: {}, totalInSources: 0, totalSwiped: 0, totalDeleted: 0 }),
+      resetProgress: () => set({ deletionProgress: {} }),
 
       setCleanupStatus: (status) =>
         set((state) => ({ cleanup: { ...state.cleanup, status } })),
@@ -103,16 +98,7 @@ export const useMemoryStore = create<MemoryState>()(
           },
         })),
 
-      resetCleanupSession: () =>
-        set({ cleanup: defaultCleanup }),
-
-      setTotalInSources: (count) => set({ totalInSources: count }),
-
-      incrementTotalSwiped: (count = 1) =>
-        set((state) => ({ totalSwiped: state.totalSwiped + count })),
-
-      incrementTotalDeleted: (count = 1) =>
-        set((state) => ({ totalDeleted: state.totalDeleted + count })),
+      resetCleanupSession: () => set({ cleanup: defaultCleanup }),
 
       setCleanupError: (error) =>
         set((state) => ({
@@ -124,13 +110,10 @@ export const useMemoryStore = create<MemoryState>()(
       clearMemoriesConfig: () => set({ memoriesConfig: null }),
     }),
     {
-      name: 'breakup-memory-store-v2',
+      name: 'breakup-memory-store-v3',
       storage: zustandStorage,
       partialize: (state) => ({
         deletionProgress: state.deletionProgress,
-        totalInSources: state.totalInSources,
-        totalSwiped: state.totalSwiped,
-        totalDeleted: state.totalDeleted,
         memoriesConfig: state.memoriesConfig,
       }),
     }

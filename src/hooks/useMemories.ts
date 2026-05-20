@@ -3,6 +3,24 @@ import apiClient from '@/api/client';
 import type { Memory, DeletionStage } from '@/types';
 import type { PaginatedResponse } from '@/api/types';
 
+export interface MemoryStats {
+  deleted: number;
+  kept: number;
+  hidden: number;
+  archived: number;
+  sorted: number;
+}
+
+export function useMemoryStats() {
+  return useQuery({
+    queryKey: ['memories', 'stats'],
+    queryFn: async () => {
+      const { data } = await apiClient.get<MemoryStats>('/api/memories/stats');
+      return data;
+    },
+  });
+}
+
 export function useMemories(page = 1, limit = 20) {
   return useQuery({
     queryKey: ['memories', { page, limit }],
@@ -32,6 +50,7 @@ export function useCreateMemory() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['memories'] });
+      queryClient.invalidateQueries({ queryKey: ['memories', 'stats'] });
     },
   });
 }
@@ -48,6 +67,7 @@ export function useUpdateMemoryStage() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['memories'] });
+      queryClient.invalidateQueries({ queryKey: ['memories', 'stats'] });
     },
   });
 }
@@ -61,6 +81,7 @@ export function useDeleteMemory() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['memories'] });
+      queryClient.invalidateQueries({ queryKey: ['memories', 'stats'] });
     },
   });
 }
